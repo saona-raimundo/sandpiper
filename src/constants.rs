@@ -1,0 +1,9 @@
+pub const EPS: f64 = 1e-16;
+pub const EMPIRICAL_MEAN_SUBSTITUTIONS_REDNECK: f64 = 0.000_55;
+pub const EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER: f64 = 0.000_62;
+pub const EMPIRICAL_MEAN_POLYMORPHISMS_REDNECK: f64 = 0.000_64;
+pub const EMPIRICAL_MEAN_POLYMORPHISMS_SANDPIPER: f64 = 0.000_41;
+pub const N_SANDPIPER: u64 = 20_000;
+pub const N_REDNECK: u64 = 500_000;
+pub const U: f64 = 1.2e-8; // Mutation rate
+pub const T: u64 = 200_000; // Number of generations

@@ -1,6 +1,8 @@
 # Next steps
 
--  truncating the distribution of *s* at -0.01 and 0.0005. I was just wondering if we could check that this is, in fact, the case — may I ask you to rerun the simulations for *alpha* = -5 and *beta* = 1000 with the truncated distribution?
+-  truncating the distribution of *s*
+  - Use conditional expectation upon $s \in (-0.01, 0.0005)$. Do this for
+    - $\alpha = -5$ and $\beta = 1000$, all $\mu, \sigma$ (20 x 20 points)
 
 # To do
 

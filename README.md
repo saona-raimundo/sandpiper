@@ -1,3 +1,7 @@
+# Next steps
+
+-  truncating the distribution of *s* at -0.01 and 0.0005. I was just wondering if we could check that this is, in fact, the case — may I ask you to rerun the simulations for *alpha* = -5 and *beta* = 1000 with the truncated distribution?
+
 # To do
 
 - PR for rand_distr for a SkewNormal

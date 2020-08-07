@@ -201,12 +201,12 @@ fn main() {
 		let variance_samples = 1000;
 		let error_limit = 1e-6;
 		// Computing redneck
-		if true {
+		if false {
 			let lower_bound = -0.01;
 			let upper_bound = 0.0005;
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, 1600);
+			let (start, end) = (400, 400);
 			for location in &locations {
 				for scale in &scales {
 					for shape in &shapes {
@@ -240,11 +240,11 @@ fn main() {
 
 		// Computing sandpiper
 		if true {
-			let lower_bound = -0.;
-			let upper_bound = 0.;
+			let lower_bound = -0.01;
+			let upper_bound = 0.0005;
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, 1600);
+			let (start, end) = (1, 400);
 			for location in &locations {
 				for scale in &scales {
 					for shape in &shapes {

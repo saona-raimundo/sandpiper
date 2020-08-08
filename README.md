@@ -5,7 +5,7 @@
   Do this for
   - [x] $\alpha = -5$ and $\beta = 1000$, all $\mu, \sigma$ (20 x 20 points)
 -  Repeat for 
-   - [ ] $\alpha = -10$ 
+   - [x] $\alpha = -10$ 
 
 # To do
 

@@ -111,7 +111,7 @@ fn main() {
 		println!("The computations took {} secs.", now.elapsed().as_secs());
 	}
 	// Approximation for a grid set of parameters
-	if false {	
+	if true {	
 		// Parameters
 		let locations = vec![-0.0000600000, -0.0000566291, -0.0000534476, -0.0000504448, -0.0000476107, -0.0000449359, -0.0000424113, -0.0000400285, -0.0000377797, -0.0000356571, -0.0000336539, -0.0000317631, -0.0000299786, -0.0000282944, -0.0000267047, -0.0000252044, -0.0000237884, -0.0000224519, -0.0000211905, -0.0000200000]; // vec![-4e-5]; //
 		let scales = vec![0.0000100000, 0.0000117078, 0.0000137073, 0.0000160482, 0.0000187889, 0.0000219977, 0.0000257544, 0.0000301527, 0.0000353022, 0.0000413311, 0.0000483897, 0.0000566536, 0.0000663290, 0.0000776566, 0.0000909188, 0.0001064459, 0.0001246247, 0.0001459081, 0.0001708263, 0.0002000000]; // vec![1e-5]; // 
@@ -120,7 +120,7 @@ fn main() {
 		let variance_samples = 1000;
 		let error_limit = 1e-6;
 		// Computing redneck
-		if true {
+		if false {
 			let mut data = Vec::new();
 			let mut counter = 0;
 			let (start, end) = (1, 1600);
@@ -159,7 +159,7 @@ fn main() {
 		if true {
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, 1600);
+			let (start, end) = (1520, 1600);
 			for location in &locations {
 				for scale in &scales {
 					for shape in &shapes {
@@ -192,12 +192,12 @@ fn main() {
 		}
 	}
 	// Approximation of conditional expectation for a grid set of parameters
-	if true {	
+	if false {	
 		// Parameters
 		let locations = vec![-0.0000600000, -0.0000566291, -0.0000534476, -0.0000504448, -0.0000476107, -0.0000449359, -0.0000424113, -0.0000400285, -0.0000377797, -0.0000356571, -0.0000336539, -0.0000317631, -0.0000299786, -0.0000282944, -0.0000267047, -0.0000252044, -0.0000237884, -0.0000224519, -0.0000211905, -0.0000200000]; // vec![-4e-5]; //
 		let scales = vec![0.0000100000, 0.0000117078, 0.0000137073, 0.0000160482, 0.0000187889, 0.0000219977, 0.0000257544, 0.0000301527, 0.0000353022, 0.0000413311, 0.0000483897, 0.0000566536, 0.0000663290, 0.0000776566, 0.0000909188, 0.0001064459, 0.0001246247, 0.0001459081, 0.0001708263, 0.0002000000]; // vec![1e-5]; // 
-		let shapes = vec![-5.]; // vec![0., -2.5, -5., -7.5]; // vec![-5.]; // 
-		let rates = vec![1000.]; // vec![0., 1000., 3000., 5000.]; // vec![1e3]; // 
+		let shapes = vec![-10.]; // vec![0., -2.5, -5., -7.5]; // vec![-5.]; // 
+		let rates = vec![0., 1000., 3000., 5000.]; // vec![1e3]; // 
 		let variance_samples = 1000;
 		let error_limit = 1e-6;
 		// Computing redneck
@@ -206,7 +206,7 @@ fn main() {
 			let upper_bound = 0.0005;
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (400, 400);
+			let (start, end) = (1550, 1600);
 			for location in &locations {
 				for scale in &scales {
 					for shape in &shapes {
@@ -239,12 +239,12 @@ fn main() {
 		}
 
 		// Computing sandpiper
-		if true {
+		if false {
 			let lower_bound = -0.01;
 			let upper_bound = 0.0005;
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, 400);
+			let (start, end) = (1520, 1600);
 			for location in &locations {
 				for scale in &scales {
 					for shape in &shapes {

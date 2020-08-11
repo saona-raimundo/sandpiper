@@ -17,6 +17,8 @@ quadrature = "0.1.2"
 getset = "0.1.1"
 anyhow = "1.0.28"
 itertools = "0.9.0"
+indicatif = "0.15.0"
+chrono = "0.4.13"
 
 [dev-dependencies]
 rayon = "1.3.0"

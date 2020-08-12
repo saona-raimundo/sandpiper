@@ -127,7 +127,7 @@ fn main() {
 			let (start, end) = (1, 2000);
 			let progress_bar = ProgressBar::new(end + 1 - start).with_style(
 				ProgressStyle::default_bar()
-					.template("[{wide_bar:40.cyan/blue}], {pos}/{len} {eta_precise})"));
+					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in locations.iter() {
 				for scale in scales.iter() {
 					for shape in shapes.iter() {
@@ -165,7 +165,7 @@ fn main() {
 			let (start, end) = (1, 2000);
 			let progress_bar = ProgressBar::new(end + 1 - start).with_style(
 				ProgressStyle::default_bar()
-					.template("[{wide_bar:40.cyan/blue}], {pos}/{len} {eta_precise})"));
+					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in locations.iter() {
 				for scale in scales.iter() {
 					for shape in shapes.iter() {

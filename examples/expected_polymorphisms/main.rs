@@ -114,24 +114,25 @@ fn main() {
 	// Approximation for a grid set of parameters
 	if true {	
 		// Parameters
-		let locations = vec![-0.0000600000, -0.0000566291, -0.0000534476, -0.0000504448, -0.0000476107, -0.0000449359, -0.0000424113, -0.0000400285, -0.0000377797, -0.0000356571, -0.0000336539, -0.0000317631, -0.0000299786, -0.0000282944, -0.0000267047, -0.0000252044, -0.0000237884, -0.0000224519, -0.0000211905, -0.0000200000]; // vec![-4e-5]; //
-		let scales = vec![0.0000100000, 0.0000117078, 0.0000137073, 0.0000160482, 0.0000187889, 0.0000219977, 0.0000257544, 0.0000301527, 0.0000353022, 0.0000413311, 0.0000483897, 0.0000566536, 0.0000663290, 0.0000776566, 0.0000909188, 0.0001064459, 0.0001246247, 0.0001459081, 0.0001708263, 0.0002000000]; // vec![1e-5]; // 
-		let shapes = vec![0., -2.5, -5., -7.5, -10.]; // vec![-5.]; // 
-		let rates = vec![7000.]; // vec![0., 1000., 3000., 5000.]; // vec![1e3]; // 
+		let locations = vec![-0.0080000000, -0.0058363249, -0.0042578361, -0.0031062643, -0.0022661460, -0.0016532455, -0.0012061098, -0.0008799061, -0.0006419272, -0.0004683120, -0.0003416526, -0.0002492494, -0.0001818376, -0.0001326579, -0.0000967793, -0.0000706045, -0.0000515088, -0.0000375778, -0.0000274145, -0.0000200000]; // vec![-0.0000600000, -0.0000566291, -0.0000534476, -0.0000504448, -0.0000476107, -0.0000449359, -0.0000424113, -0.0000400285, -0.0000377797, -0.0000356571, -0.0000336539, -0.0000317631, -0.0000299786, -0.0000282944, -0.0000267047, -0.0000252044, -0.0000237884, -0.0000224519, -0.0000211905, -0.0000200000]; // vec![-4e-5]; //
+		let scales = vec![0.0000100000, 0.0000142165, 0.0000202110, 0.0000287331, 0.0000408486, 0.0000580726, 0.0000825592, 0.0001173706, 0.0001668606, 0.0002372181, 0.0003372423, 0.0004794423, 0.0006816015, 0.0009690021, 0.0013775867, 0.0019584530, 0.0027842444, 0.0039582349, 0.0056272444, 0.0080000000]; // vec![0.0000100000, 0.0000117078, 0.0000137073, 0.0000160482, 0.0000187889, 0.0000219977, 0.0000257544, 0.0000301527, 0.0000353022, 0.0000413311, 0.0000483897, 0.0000566536, 0.0000663290, 0.0000776566, 0.0000909188, 0.0001064459, 0.0001246247, 0.0001459081, 0.0001708263, 0.0002000000]; // vec![1e-5]; // 
+		let shapes_and_rates = vec![(0., 1000.), (-2.5, 1000.), (0., 7000.)]; // let shapes = vec![0., -2.5, -5., -7.5, -10.]; // vec![-5.]; // 
+		// let rates = vec![7000.]; // vec![0., 1000., 3000., 5000.]; // vec![1e3]; // 
 		let variance_samples = 1000;
 		let error_limit = 1e-6;
 		// Computing redneck
 		if true {
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, 2000);
+			let (start, end) = (1, (locations.len()*scales.len()*shapes_and_rates.len()) as u64); // 2000);
 			let progress_bar = ProgressBar::new(end + 1 - start).with_style(
 				ProgressStyle::default_bar()
 					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in locations.iter() {
 				for scale in scales.iter() {
-					for shape in shapes.iter() {
-						for rate in &rates {
+					for (shape, rate) in shapes_and_rates.iter() {
+					// for shape in shapes.iter() {
+					// 	for rate in &rates {
 							counter += 1;
 							if start <= counter && counter <= end {
 								let result: Variance = approximate_expectation_redneck(*location, *scale, *shape, *rate, variance_samples, error_limit);
@@ -147,7 +148,7 @@ fn main() {
 									.unwrap();
 								progress_bar.inc(1);
 
-							}
+							// }
 						}
 					}
 				}
@@ -162,14 +163,15 @@ fn main() {
 		if true {
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, 2000);
+			let (start, end) = (1, (locations.len()*scales.len()*shapes_and_rates.len()) as u64); // 2000);
 			let progress_bar = ProgressBar::new(end + 1 - start).with_style(
 				ProgressStyle::default_bar()
 					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in locations.iter() {
 				for scale in scales.iter() {
-					for shape in shapes.iter() {
-						for rate in &rates {
+					for (shape, rate) in shapes_and_rates.iter() {
+					// for shape in shapes.iter() {
+					// 	for rate in &rates {
 							counter += 1;
 							if start <= counter && counter <= end {
 								let result: Variance = approximate_expectation_sandpiper(*location, *scale, *shape, *rate, variance_samples, error_limit);
@@ -184,7 +186,7 @@ fn main() {
 									.plot_later(format!("sandpiper_poly_{}", counter))
 									.unwrap();
 								progress_bar.inc(1);
-							}
+							// }
 						}
 					}
 				}

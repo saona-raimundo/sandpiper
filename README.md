@@ -1,8 +1,11 @@
 # Next steps
 
--  truncating the distribution of *s*
-  - Use conditional expectation upon $s \in (-0.01, 0.0005)$. Do this for
-    - $\alpha = -5$ and $\beta = 1000$, all $\mu, \sigma$ (20 x 20 points)
+-  truncating the distribution of $s$
+  Use conditional expectation upon $s \in (-0.01, 0.0005)$. 
+  Do this for
+  - [x] $\alpha = -5$ and $\beta = 1000$, all $\mu, \sigma$ (20 x 20 points)
+-  Repeat for 
+   - [x] $\alpha = -10$ 
 
 # To do
 

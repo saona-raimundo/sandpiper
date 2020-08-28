@@ -122,7 +122,7 @@ fn main() {
 		let variance_samples = 1000;
 		let error_limit = 1e-6;
 		// Computing redneck
-		if true {
+		if false {
 			println!("Redneck");
 			let mut data = Vec::new();
 			let mut counter = 0;
@@ -165,7 +165,7 @@ fn main() {
 			println!("Sandpiper");
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
+			let (start, end) = (9368, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
 			let progress_bar = ProgressBar::new(end + 1 - start).with_style(
 				ProgressStyle::default_bar()
 					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));

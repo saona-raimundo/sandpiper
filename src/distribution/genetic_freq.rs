@@ -65,7 +65,8 @@ impl GeneticFreq {
 
 impl Distribution<f64> for GeneticFreq {
     fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> f64 {
-        let beta: Beta<f64> = Beta::new(4. * self.population as f64 * self.mutation_rate, 4. * self.population as f64 * self.mutation_rate)
+        let shape = 4. * self.population as f64 * self.mutation_rate;
+        let beta: Beta<f64> = Beta::new(shape, shape)
                 .unwrap();
         let mut proposal: f64 = beta.sample(rng);
 

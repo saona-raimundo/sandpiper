@@ -117,7 +117,7 @@ fn main() {
 		// mu
 		let locations = vec![-0.2000000000, -0.1523191619, -0.1160056354, -0.0883494058, -0.0672865373, -0.0512451448, -0.0390280876, -0.0297236279, -0.0226373905, -0.0172405417, -0.0131303243, -0.0100000000];
 		// sigma
-		let scales = vec![0.0100000000, 0.0131303243, 0.0172405417, 0.0226373905, 0.0297236279, 0.0390280876, 0.0512451448, 0.0672865373, 0.0883494058, 0.1160056354, 0.1523191619, 0.2000000000];
+		let scales = vec![0.0000100000, 0.0000187382, 0.0000351119, 0.0000657933, 0.0001232847, 0.0002310130, 0.0004328761, 0.0008111308, 0.0015199111, 0.0028480359, 0.0053366992, 0.0100000000];
 		// let shapes_and_rates = vec![(0., 1000.), (-2.5, 1000.), (0., 7000.)]; // 
 		// alpha
 		let shapes =vec![0., -2., -4.];
@@ -127,11 +127,11 @@ fn main() {
 		let error_limit = 1e-6;
 		// Computing redneck
 		if true {
+			let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
 			println!("Redneck");
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
-			let progress_bar = ProgressBar::new(end + 1 - start).with_style(
+			let progress_bar = ProgressBar::new(u64::min(end, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64) + 1 - start).with_style(
 				ProgressStyle::default_bar()
 					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in locations.iter() {
@@ -166,11 +166,11 @@ fn main() {
 
 		// Computing sandpiper
 		if true {
+			let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
 			println!("Sandpiper");
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (9368, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
-			let progress_bar = ProgressBar::new(end + 1 - start).with_style(
+			let progress_bar = ProgressBar::new(u64::min(end, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64) + 1 - start).with_style(
 				ProgressStyle::default_bar()
 					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in locations.iter() {

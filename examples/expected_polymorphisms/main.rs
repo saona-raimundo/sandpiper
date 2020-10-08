@@ -206,24 +206,36 @@ fn main() {
 	// Approximation of conditional expectation for a grid set of parameters
 	if false {	
 		// Parameters
-		let locations = vec![-0.0000600000, -0.0000566291, -0.0000534476, -0.0000504448, -0.0000476107, -0.0000449359, -0.0000424113, -0.0000400285, -0.0000377797, -0.0000356571, -0.0000336539, -0.0000317631, -0.0000299786, -0.0000282944, -0.0000267047, -0.0000252044, -0.0000237884, -0.0000224519, -0.0000211905, -0.0000200000]; // vec![-4e-5]; //
-		let scales = vec![0.0000100000, 0.0000117078, 0.0000137073, 0.0000160482, 0.0000187889, 0.0000219977, 0.0000257544, 0.0000301527, 0.0000353022, 0.0000413311, 0.0000483897, 0.0000566536, 0.0000663290, 0.0000776566, 0.0000909188, 0.0001064459, 0.0001246247, 0.0001459081, 0.0001708263, 0.0002000000]; // vec![1e-5]; // 
-		let shapes = vec![-10.]; // vec![0., -2.5, -5., -7.5]; // vec![-5.]; // 
-		let rates = vec![0., 1000., 3000., 5000.]; // vec![1e3]; // 
+		// mu
+		let locations = vec![-0.2000000000, -0.1523191619, -0.1160056354, -0.0883494058, -0.0672865373, -0.0512451448, -0.0390280876, -0.0297236279, -0.0226373905, -0.0172405417, -0.0131303243, -0.0100000000];
+		// sigma
+		let scales = vec![0.0000100000, 0.0000187382, 0.0000351119, 0.0000657933, 0.0001232847, 0.0002310130, 0.0004328761, 0.0008111308, 0.0015199111, 0.0028480359, 0.0053366992, 0.0100000000];
+		// let shapes_and_rates = vec![(0., 1000.), (-2.5, 1000.), (0., 7000.)]; // 
+		// alpha
+		let shapes =vec![0., -2., -4.];
+		// beta
+		let rates = vec![0., 10., 50., 100.,  1000., 5000.]; // vec![1e3]; // 
+		
+		// Conditional expectation bounds
+		let lower_bound = -0.01;
+		let upper_bound = 0.0005;
+
+		// Computational parameters
 		let variance_samples = 1000;
 		let error_limit = 1e-6;
+
 		// Computing redneck
 		if false {
-			let lower_bound = -0.01;
-			let upper_bound = 0.0005;
+			let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1550, 1600);
+			let progress_bar = ProgressBar::new(u64::min(end, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64) + 1 - start).with_style(
+				ProgressStyle::default_bar()
+					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in &locations {
 				for scale in &scales {
 					for shape in &shapes {
 						for rate in &rates {
-							let now = std::time::Instant::now();	
 							counter += 1;
 							if start <= counter && counter <= end {
 								let result: Variance = approximate_conditional_expectation_redneck(lower_bound, upper_bound, *location, *scale, *shape, *rate, variance_samples, error_limit);
@@ -237,8 +249,7 @@ fn main() {
 									.set_title(format!("Computed value {} of conditional expected polymorphisms (between {} and {}). redneck", counter, lower_bound, upper_bound))
 									.plot_later(format!("redneck_poly_{}", counter))
 									.unwrap();
-								println!("{:?}", counter);
-								println!("Remaining {} hours.", (end - counter) * now.elapsed().as_secs() / 3600);	
+								progress_bar.inc(1);
 							}
 						}
 					}
@@ -252,16 +263,16 @@ fn main() {
 
 		// Computing sandpiper
 		if false {
-			let lower_bound = -0.01;
-			let upper_bound = 0.0005;
+			let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
 			let mut data = Vec::new();
 			let mut counter = 0;
-			let (start, end) = (1520, 1600);
+			let progress_bar = ProgressBar::new(u64::min(end, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64) + 1 - start).with_style(
+				ProgressStyle::default_bar()
+					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in &locations {
 				for scale in &scales {
 					for shape in &shapes {
 						for rate in &rates {
-							let now = std::time::Instant::now();	
 							counter += 1;
 							if start <= counter && counter <= end {
 								let result: Variance = approximate_conditional_expectation_sandpiper(lower_bound, upper_bound, *location, *scale, *shape, *rate, variance_samples, error_limit);
@@ -275,8 +286,7 @@ fn main() {
 									.set_title(format!("Computed value {} of conditional expected polymorphisms (between {} and {}). sandpiper", counter, lower_bound, upper_bound))
 									.plot_later(format!("sandpiper_poly_{}", counter))
 									.unwrap();
-								println!("{:?}", counter);
-								println!("Remaining {} hours.", (end - counter) * now.elapsed().as_secs() / 3600);	
+								progress_bar.inc(1);
 							}
 						}
 					}

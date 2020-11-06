@@ -1,3 +1,13 @@
+# Checking
+
+If s = infinity, then we know that allele frequency must be 1 and therefore the polymorphism is 0.
+
+If s = - infinity, then allele frequency must be 0 and therefore the polymorphism is 0 too.
+
+If s = 0, then allele frequency is the most random and concentrates around 1/2, therefore the polymorphism is positive.
+
+I will check the transition first, by fixing s, and then try to simulate this with some parameters of the model.
+
 # Next steps
 
 -  alpha: 0, -2, -4

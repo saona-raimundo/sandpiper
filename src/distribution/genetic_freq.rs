@@ -58,7 +58,7 @@ impl GeneticFreq {
         if dominance.is_nan() || dominance > 1.0 || dominance < 0.0 {
             Err(StatsError::BadParams)
         } else {
-            Ok(GeneticFreq{selection, dominance, population, mutation_rate})
+            Ok(GeneticFreq{population, mutation_rate, selection, dominance})
         }
     }
 }

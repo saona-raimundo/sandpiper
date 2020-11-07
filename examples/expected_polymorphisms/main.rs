@@ -112,10 +112,12 @@ fn main() {
 		println!("The computations took {} secs.", now.elapsed().as_secs());
 	}
 	// Approximation for a grid set of parameters
+	if false {	
 		// Parameters
 		// mu
 		let locations = vec![-0.2000000000, -0.1523191619, -0.1160056354, -0.0883494058, -0.0672865373, -0.0512451448, -0.0390280876, -0.0297236279, -0.0226373905, -0.0172405417, -0.0131303243, -0.0100000000];
 		// sigma
+		let scales = vec![1.0]; 
 		// let shapes_and_rates = vec![(0., 1000.), (-2.5, 1000.), (0., 7000.)]; // 
 		// alpha
 		let shapes =vec![0., -2., -4.];
@@ -129,6 +131,7 @@ fn main() {
 			println!("Redneck");
 			let mut data = Vec::new();
 			let mut counter = 0;
+			let progress_bar = ProgressBar::new(u64::min(end, (locations.len() * scales.len() * shapes.len() * rates.len()) as u64) + 1 - start).with_style(
 				ProgressStyle::default_bar()
 					.template("[{wide_bar}], {pos}/{len} {eta_precise})"));
 			for location in locations.iter() {
@@ -163,6 +166,8 @@ fn main() {
 
 		// Computing sandpiper
 		if true {
+			let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
+
 			println!("Sandpiper");
 			let mut data = Vec::new();
 			let mut counter = 0;
@@ -200,10 +205,23 @@ fn main() {
 		}
 	}
 	// Approximation of conditional expectation for a grid set of parameters
+	if false {
 		// Parameters
+		// mu
+		let locations = vec![-0.2000000000, -0.1523191619, -0.1160056354, -0.0883494058, -0.0672865373, -0.0512451448, -0.0390280876, -0.0297236279, -0.0226373905, -0.0172405417, -0.0131303243, -0.0100000000];
+		// sigma
+		let scales = vec![1.0];
+		// let shapes_and_rates = vec![(0., 1000.), (-2.5, 1000.), (0., 7000.)]; // 
+		// alpha
+		let shapes =vec![0., -2., -4.];
+		// beta
+		let rates = vec![0., 10., 50., 100.,  1000., 5000.]; // vec![1e3]; // 
 		let variance_samples = 1000;
 		let error_limit = 1e-6;
 		// Computing redneck
+		if false {
+			let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
+			let (lower_bound, upper_bound) = (-1.0, 1.0);
 			let mut data = Vec::new();
 			let mut counter = 0;
 			for location in &locations {
@@ -235,6 +253,10 @@ fn main() {
 		}
 
 		// Computing sandpiper
+		if false {
+			let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
+			let (lower_bound, upper_bound) = (-1.0, 1.0);
+
 			let mut data = Vec::new();
 			let mut counter = 0;
 			for location in &locations {

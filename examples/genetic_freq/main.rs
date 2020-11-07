@@ -2,30 +2,37 @@ use anyhow::Result;
 use preexplorer::prelude::*;
 use rand::distributions::Distribution;
 use sandpiper::prelude::*;
+use rayon::prelude::*;
 
-const SAMPLES: usize = 1_000;
+const SAMPLES: usize = 1_000_000;
 
 fn main() -> Result<()> {
     // Single genetic frequency
-    if false {
-        let population = 1000;
-        let mutation_rate = 0.00001;
-        let selection = 0.0; 
+    if true {
+        let population = N_REDNECK;
+        let mutation_rate = U;
+        let selection = -0.00001;
         let dominance = 0.5;
 
         let gen_freq = GeneticFreq::new(population, mutation_rate, selection, dominance)?;
-        let rng = rand::thread_rng();
+        // let rng = rand::thread_rng();
 
-        let realizations = gen_freq.sample_iter(rng).take(SAMPLES);
+        let realizations = 
+            // gen_freq.sample_iter(rng).take(SAMPLES);
+            (0..SAMPLES).collect::<Vec<usize>>().par_iter().map(|_| gen_freq.sample(&mut rand::thread_rng())).collect::<Vec<f64>>();
 
-        pre::Density::new(realizations)
-            .set_title(format!("Genetic frequency. N: {}, U: {}, s: {}, h: {}", population, mutation_rate, selection, dominance))
-            .plot("testing")
-            .unwrap();
+        // pre::Density::new(&realizations)
+        //     .set_title(format!("Genetic frequency. N: {}, U: {}, s: {}, h: {}", population, mutation_rate, selection, dominance))
+        //     .plot("testing")
+        //     .unwrap();
+
+        let mean: f64 = realizations.iter().sum::<f64>() / SAMPLES as f64;
+
+        println!("Mean: {}", mean);
     }
 
     // Single Beta
-    if true {
+    if false {
         let population = 1;
         let mutation_rate = 1e-4;
 
@@ -53,7 +60,8 @@ fn main() -> Result<()> {
     if false {
         let population = 500_000;
         let mutation_rate = 1.2e-8;
-        let selections: Vec<f64> = vec![-6e-5, -4e-5, -2e-5]; 
+        // let selections: Vec<f64> = vec![-6e-5, -4e-5, -2e-5]; 
+        let selections: Vec<f64> = vec![6e-5, 4e-5, 2e-5]; 
         let betas: Vec<f64> = vec![1e1, 1e2, 1e3, 1e4, 1e5];
 
 

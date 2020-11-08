@@ -2,10 +2,14 @@
 use rand::distributions::Distribution;
 use rand::Rng;
 use statrs::statistics::{Max, Min};
+use average::Merge;
 
 // Structs
 use crate::error::{Result, StatsError};
 use std::f64;
+
+// Crates
+use rayon::prelude::*;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Selection {
@@ -130,6 +134,47 @@ impl Heterozygosity {
         crate::GeneticFreq::new(self.population, self.mutation_rate, selection, dominance)
             .unwrap()
             .sample(rng)
+    }
+
+    /// Returns a empirical average with the given number of samples.
+    pub fn mc_mean(&self, samples: usize) -> average::Mean {
+        (0..samples).into_par_iter()
+                    .map(|_| self.sample(&mut rand::thread_rng()))
+                    .collect::<Vec<f64>>()
+                    .iter()
+                    .collect()
+    }
+
+    /// Approximates the expectation with approximated variance to match up the error limit given.
+    pub fn mc_approx_mean(&self, variance_samples: usize, error_limit: f64) -> average::Variance {
+        let mut samples = 1000;
+        // Sample
+        let mut mc_mean_samples = (0..variance_samples)
+                .into_par_iter()
+                .map(|_| self.mc_mean(samples) )
+                .collect::<Vec<average::Mean>>();
+        // Summarize
+        let mut variance: average::Variance = mc_mean_samples
+                .iter()
+                .map(|mc_mean_sample| mc_mean_sample.mean() )
+                .collect();
+        while variance.error() > error_limit {
+            samples *= 2;
+            println!("{:?}", variance);
+            // Enhace samples
+            mc_mean_samples = mc_mean_samples
+                .into_par_iter()
+                .update(|mc_mean_sample| {
+                    mc_mean_sample.merge(&self.mc_mean(samples))
+                    })
+                .collect::<Vec<average::Mean>>();
+            // Summarize
+            variance = mc_mean_samples
+                .iter()
+                .map(|mc_mean_sample| mc_mean_sample.mean() )
+                .collect();
+        }
+        variance
     }
 }
 

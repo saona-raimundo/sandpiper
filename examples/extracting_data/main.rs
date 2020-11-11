@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{Write, BufReader, BufRead, Error};
+use std::io::{BufRead, BufReader, Error, Write};
 
 fn main() -> Result<(), Error> {
     // let target_path = "target/preexplorer/data/sandpiper_poly_all.txt";
@@ -10,13 +10,13 @@ fn main() -> Result<(), Error> {
     for counter in 1..=10000 {
         // let source_path = format!("target/preexplorer/data/sandpiper_poly_{}.txt", counter);
         let source_path = format!("target/preexplorer/data/redneck_poly_{}.txt", counter);
-	    let input = File::open(source_path)?;
-	    let buffered = BufReader::new(input);
-	    for line in buffered.lines().skip(3) {
-	        write!(output, "{}\n", line?)?;
-	    }	
+        let input = File::open(source_path)?;
+        let buffered = BufReader::new(input);
+        for line in buffered.lines().skip(3) {
+            write!(output, "{}\n", line?)?;
+        }
     }
-	
+
     // // Checking
     // let input = File::open(target_path)?;
     // let buffered = BufReader::new(input);

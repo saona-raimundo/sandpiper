@@ -149,7 +149,6 @@ impl Mean<R64> for Substitutions {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -167,7 +166,7 @@ mod tests {
                     let parameters = Parameters::new(*mu, *sigma, *alpha, beta).unwrap();
                     let subs = Substitutions::new(crate::N_SANDPIPER, parameters);
 
-                    assert_eq!(subs.h(r64(s)), expected);        
+                    assert_eq!(subs.h(r64(s)), expected);
                 }
             }
         }

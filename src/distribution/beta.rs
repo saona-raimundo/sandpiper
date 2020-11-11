@@ -1,7 +1,6 @@
-
+use rand::Rng;
 use rand_distr::Float;
 use rand_distr::{Distribution, Open01};
-use rand::Rng;
 use std::{error, fmt};
 
 /// The algorithm used for sampling the Beta distribution.
@@ -49,7 +48,9 @@ struct BC<N> {
 /// ```
 #[derive(Clone, Copy, Debug)]
 pub struct Beta<N> {
-    a: N, b: N, switched_params: bool,
+    a: N,
+    b: N,
+    switched_params: bool,
     algorithm: BetaAlgorithm<N>,
 }
 
@@ -96,28 +97,34 @@ where
         };
         if alpha > N::from(1.) {
             let alpha = a + b;
-            let beta = ((alpha - N::from(2.)) / (N::from(2.)*a*b - alpha)).sqrt();
+            let beta = ((alpha - N::from(2.)) / (N::from(2.) * a * b - alpha)).sqrt();
             let gamma = a + N::from(1.) / beta;
 
             Ok(Beta {
-                a, b, switched_params,
-                algorithm: BetaAlgorithm::BB(BB {
-                    alpha, beta, gamma,
-                })
+                a,
+                b,
+                switched_params,
+                algorithm: BetaAlgorithm::BB(BB { alpha, beta, gamma }),
             })
         } else {
             let alpha = a + b;
             let beta = N::from(1.) / b;
             let delta = N::from(1.) + a - b;
-            let kappa1 = delta * (N::from(1. / 18. / 4.) + N::from(3. / 18. / 4.)*b) 
-                         / (a*beta - N::from(14. / 18.));
-            let kappa2 = N::from(0.25) + (N::from(0.5) + N::from(0.25)/delta)*b;
+            let kappa1 = delta * (N::from(1. / 18. / 4.) + N::from(3. / 18. / 4.) * b)
+                / (a * beta - N::from(14. / 18.));
+            let kappa2 = N::from(0.25) + (N::from(0.5) + N::from(0.25) / delta) * b;
 
             Ok(Beta {
-                a, b, switched_params,
+                a,
+                b,
+                switched_params,
                 algorithm: BetaAlgorithm::BC(BC {
-                    alpha, beta, delta, kappa1, kappa2,
-                })
+                    alpha,
+                    beta,
+                    delta,
+                    kappa1,
+                    kappa2,
+                }),
             })
         }
     }
@@ -137,7 +144,7 @@ where
                     let u2 = rng.sample(Open01);
                     let v = algo.beta * (u1 / (N::from(1.) - u1)).ln();
                     w = self.a * v.exp();
-                    let z = u1*u1 * u2;
+                    let z = u1 * u1 * u2;
                     let r = algo.gamma * v - N::from(4.).ln();
                     let s = self.a + r - w;
                     // 2.
@@ -160,7 +167,7 @@ where
                 } else {
                     self.b / (self.b + w)
                 }
-            },
+            }
             BetaAlgorithm::BC(algo) => {
                 let mut w;
                 loop {
@@ -191,8 +198,9 @@ where
                     // 5.
                     let v = algo.beta * (u1 / (N::from(1.) - u1)).ln();
                     w = self.a * v.exp();
-                    if !(algo.alpha * ((algo.alpha / (self.b + w)).ln() + v)
-                         - N::from(4.).ln() < z.ln()) {
+                    if !(algo.alpha * ((algo.alpha / (self.b + w)).ln() + v) - N::from(4.).ln()
+                        < z.ln())
+                    {
                         break;
                     };
                 }
@@ -206,7 +214,7 @@ where
                 } else {
                     self.b / (self.b + w)
                 }
-            },
+            }
         }
     }
 }

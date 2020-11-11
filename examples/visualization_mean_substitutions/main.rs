@@ -27,12 +27,19 @@ fn main() {
         let beta = 0.0;
 
         let sigma = 1.;
-        let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-100., 100., 100).iter().map(|x| *x).collect();
-        let values: Vec<f64> = grid.clone().iter()
+        let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-100., 100., 100)
+            .iter()
+            .map(|x| *x)
+            .collect();
+        let values: Vec<f64> = grid
+            .clone()
+            .iter()
             .map(|&alpha| {
                 let parameters = Parameters::new(mu, sigma, alpha, beta).unwrap();
                 let subs = Substitutions::new(N_SANDPIPER, parameters);
-                (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER).abs().into()
+                (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER)
+                    .abs()
+                    .into()
             })
             .collect();
 
@@ -43,12 +50,19 @@ fn main() {
             .into();
 
         for sigma in [0.1, 0.01, 0.001, 0.0001].iter() {
-            let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-100., 100., 100).iter().map(|x| *x).collect();
-            let values: Vec<f64> = grid.clone().iter()
+            let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-100., 100., 100)
+                .iter()
+                .map(|x| *x)
+                .collect();
+            let values: Vec<f64> = grid
+                .clone()
+                .iter()
                 .map(|&alpha| {
                     let parameters = Parameters::new(mu, *sigma, alpha, beta).unwrap();
                     let subs = Substitutions::new(N_SANDPIPER, parameters);
-                    (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER).abs().into()
+                    (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER)
+                        .abs()
+                        .into()
                 })
                 .collect();
 
@@ -62,28 +76,33 @@ fn main() {
 
         comparison
             .set_logy(2)
-            .plot("error fitting for various alphas").unwrap();           
-
+            .plot("error fitting for various alphas")
+            .unwrap();
     }
-
 
     // Plotting the shape of fitting error while varying alpha, for various beta
     if false {
- 
         let mu = -0.004444;
         let sigma = 0.1;
         let beta = 0.0;
 
-        let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-300., 300., 100).iter().map(|x| *x).collect();
-        let values: Vec<f64> = grid.clone().iter()
+        let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-300., 300., 100)
+            .iter()
+            .map(|x| *x)
+            .collect();
+        let values: Vec<f64> = grid
+            .clone()
+            .iter()
             .map(|&alpha| {
                 let parameters = Parameters::new(mu, sigma, alpha, beta).unwrap();
                 let subs = Substitutions::new(N_SANDPIPER, parameters);
-                (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER).abs().into()
+                (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER)
+                    .abs()
+                    .into()
             })
             .collect();
 
-        let mut comparison: pre::Processes<_,_> = (grid.into_iter(), values)
+        let mut comparison: pre::Processes<_, _> = (grid.into_iter(), values)
             .preexplore()
             .set_title(format!("beta = {}", beta))
             .set_xlabel("alpha")
@@ -93,13 +112,19 @@ fn main() {
             .into();
 
         for beta in [1.0, 10.0, 100., 1000.].iter() {
-
-            let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-300., 300., 100).iter().map(|x| *x).collect();
-            let values: Vec<f64> = grid.clone().iter()
+            let grid: Vec<f64> = ndarray::Array1::<f64>::linspace(-300., 300., 100)
+                .iter()
+                .map(|x| *x)
+                .collect();
+            let values: Vec<f64> = grid
+                .clone()
+                .iter()
                 .map(|&alpha| {
                     let parameters = Parameters::new(mu, sigma, alpha, *beta).unwrap();
                     let subs = Substitutions::new(N_SANDPIPER, parameters);
-                    (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER).abs().into()
+                    (subs.mean() - EMPIRICAL_MEAN_SUBSTITUTIONS_SANDPIPER)
+                        .abs()
+                        .into()
                 })
                 .collect();
 
@@ -116,15 +141,14 @@ fn main() {
 
         comparison
             .set_logy(2)
-            .plot("alpha for various beta").unwrap();        
-
-    
+            .plot("alpha for various beta")
+            .unwrap();
     }
-
 
     // Saving a heat map for each fixed beta.
     if true {
-        for beta in [1000.].iter() { //, 10., 100., 200., 300., 500., 800., 1000., 1500., 2000.].iter() {
+        for beta in [1000.].iter() {
+            //, 10., 100., 200., 300., 500., 800., 1000., 1500., 2000.].iter() {
             fitting_inspection(*beta);
         }
     }
@@ -132,7 +156,7 @@ fn main() {
 
 fn fitting_inspection(beta: f64) {
     // Params
-    let grid_level = 10; 
+    let grid_level = 10;
 
     // Grids
     let mu_grid = ndarray::Array1::<f64>::linspace(-0.01, 0., grid_level);
@@ -185,7 +209,10 @@ fn fitting_inspection(beta: f64) {
         .set_title(&format!("Fitting values for beta = {}", beta))
         .set_xlabel("mu")
         .set_ylabel("sigma")
-        .plot_with_script(&format!("heat_map, beta = {}, sandpiper", beta), format!("
+        .plot_with_script(
+            &format!("heat_map, beta = {}, sandpiper", beta),
+            format!(
+                "
 unset key
 set title \"Fitting values for beta = {}\"
 set xlabel \"mu\"
@@ -194,7 +221,9 @@ set ylabel \"sigma\"
 set view map
 plot \"target\\\\preexplorer\\\\data\\\\heat_map, beta = {}, sandpiper.txt\" u 1:2:3 with image
 pause -1
-            ", beta, beta)
+            ",
+                beta, beta
+            ),
         )
         .unwrap();
 }

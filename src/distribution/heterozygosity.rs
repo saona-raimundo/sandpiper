@@ -1,8 +1,8 @@
 // Traits
+use average::Merge;
 use rand::distributions::Distribution;
 use rand::Rng;
 use statrs::statistics::{Max, Min};
-use average::Merge;
 
 // Structs
 use crate::error::{Result, StatsError};
@@ -14,21 +14,21 @@ use rayon::prelude::*;
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Selection {
     Fixed(f64),
-    SkewNormal{
+    SkewNormal {
         location: f64,
         scale: f64,
         shape: f64,
         bounds: Option<(f64, f64)>,
-    }
+    },
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Dominance {
     /// Fixed value.
     Fixed(f64),
-    Sigmoid{
+    Sigmoid {
         rate: f64,
-    }
+    },
 }
 
 /// Polymorphisms in the population.
@@ -42,13 +42,13 @@ pub enum Dominance {
 ///
 /// let population = 1000;
 /// let mutation_rate = 0.00001;
-/// let selection = Selection::Fixed(0.0); 
+/// let selection = Selection::Fixed(0.0);
 /// let dominance = Dominance::Fixed(0.5);
 /// let hetero = Heterozygosity::new(population, mutation_rate, selection, dominance).unwrap();
 /// ```
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Heterozygosity {
-    population: u64, // N
+    population: u64,    // N
     mutation_rate: f64, // U
     selection: Selection,
     dominance: Dominance,
@@ -69,9 +69,9 @@ impl Heterozygosity {
     ///
     /// let population = 1000;
     /// let mutation_rate = 0.00001;
-    /// let selection = Selection::Fixed(0.0); 
+    /// let selection = Selection::Fixed(0.0);
     /// let dominance = Dominance::Fixed(0.5);
-    /// 
+    ///
     /// let result = Heterozygosity::new(population, mutation_rate, selection, dominance);
     /// assert!(result.is_ok());
     ///
@@ -79,38 +79,64 @@ impl Heterozygosity {
     /// let result = Heterozygosity::new(population, mutation_rate, selection, dominance);
     /// assert!(result.is_err());
     /// ```
-    pub fn new(population: u64, mutation_rate: f64, selection: Selection, dominance: Dominance) -> Result<Self> {
+    pub fn new(
+        population: u64,
+        mutation_rate: f64,
+        selection: Selection,
+        dominance: Dominance,
+    ) -> Result<Self> {
         match selection {
-            Selection::Fixed(s) => if s.is_nan() {
-                return Err(StatsError::BadParams)
-            },
-            Selection::SkewNormal{location, scale, shape, bounds} => {
+            Selection::Fixed(s) => {
+                if s.is_nan() {
+                    return Err(StatsError::BadParams);
+                }
+            }
+            Selection::SkewNormal {
+                location,
+                scale,
+                shape,
+                bounds,
+            } => {
                 if location.is_nan() || scale.is_nan() || scale <= 0.0 || shape.is_nan() {
-                    return Err(StatsError::BadParams)
+                    return Err(StatsError::BadParams);
                 }
                 if let Some((lower_bound, upper_bound)) = bounds {
                     if upper_bound < lower_bound {
-                        return Err(StatsError::BadParams)
+                        return Err(StatsError::BadParams);
                     }
                 }
-            },
+            }
         }
         match dominance {
-            Dominance::Fixed(h) => if h.is_nan() || h < 0.0 {
-                return Err(StatsError::BadParams)
-            },
-            Dominance::Sigmoid{rate} => if rate < 0.0 || rate.is_nan() {
-                return Err(StatsError::BadParams)
-            },
+            Dominance::Fixed(h) => {
+                if h.is_nan() || h < 0.0 {
+                    return Err(StatsError::BadParams);
+                }
+            }
+            Dominance::Sigmoid { rate } => {
+                if rate < 0.0 || rate.is_nan() {
+                    return Err(StatsError::BadParams);
+                }
+            }
         }
-        Ok(Heterozygosity{population, mutation_rate, selection, dominance})
+        Ok(Heterozygosity {
+            population,
+            mutation_rate,
+            selection,
+            dominance,
+        })
     }
 
     /// Samples from the selection 's'.
     pub fn sample_selection<R: Rng + ?Sized>(&self, rng: &mut R) -> f64 {
         match self.selection {
             Selection::Fixed(s) => s,
-            Selection::SkewNormal{location, scale, shape, bounds} => {
+            Selection::SkewNormal {
+                location,
+                scale,
+                shape,
+                bounds,
+            } => {
                 let random_selection = crate::SkewNormal::new(location, scale, shape).unwrap();
                 let mut proposal = random_selection.sample(rng);
                 if let Some((lower_bound, upper_bound)) = bounds {
@@ -119,7 +145,7 @@ impl Heterozygosity {
                     }
                 }
                 proposal
-            },
+            }
         }
     }
 
@@ -128,7 +154,7 @@ impl Heterozygosity {
         let selection = self.sample_selection(rng);
         let dominance = match self.dominance {
             Dominance::Fixed(h) => h,
-            Dominance::Sigmoid{rate} =>  1. / (1. + (-rate * selection).exp()),
+            Dominance::Sigmoid{ rate } => 1. / (1. + (-rate * selection).exp()),
         };
 
         crate::GeneticFreq::new(self.population, self.mutation_rate, selection, dominance)
@@ -138,11 +164,12 @@ impl Heterozygosity {
 
     /// Returns a empirical average with the given number of samples.
     pub fn mc_mean(&self, samples: usize) -> average::Mean {
-        (0..samples).into_par_iter()
-                    .map(|_| self.sample(&mut rand::thread_rng()))
-                    .collect::<Vec<f64>>()
-                    .iter()
-                    .collect()
+        (0..samples)
+            .into_par_iter()
+            .map(|_| self.sample(&mut rand::thread_rng()))
+            .collect::<Vec<f64>>()
+            .iter()
+            .collect()
     }
 
     /// Approximates the expectation with approximated variance to match up the error limit given.
@@ -150,28 +177,25 @@ impl Heterozygosity {
         let mut samples = 1000;
         // Sample
         let mut mc_mean_samples = (0..variance_samples)
-                .into_par_iter()
-                .map(|_| self.mc_mean(samples) )
-                .collect::<Vec<average::Mean>>();
+            .into_par_iter()
+            .map(|_| self.mc_mean(samples))
+            .collect::<Vec<average::Mean>>();
         // Summarize
         let mut variance: average::Variance = mc_mean_samples
-                .iter()
-                .map(|mc_mean_sample| mc_mean_sample.mean() )
-                .collect();
+            .iter()
+            .map(|mc_mean_sample| mc_mean_sample.mean())
+            .collect();
         while variance.error() > error_limit {
             samples *= 2;
-            println!("{:?}", variance);
             // Enhace samples
             mc_mean_samples = mc_mean_samples
                 .into_par_iter()
-                .update(|mc_mean_sample| {
-                    mc_mean_sample.merge(&self.mc_mean(samples))
-                    })
+                .update(|mc_mean_sample| mc_mean_sample.merge(&self.mc_mean(samples)))
                 .collect::<Vec<average::Mean>>();
             // Summarize
             variance = mc_mean_samples
                 .iter()
-                .map(|mc_mean_sample| mc_mean_sample.mean() )
+                .map(|mc_mean_sample| mc_mean_sample.mean())
                 .collect();
         }
         variance

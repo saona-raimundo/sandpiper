@@ -165,3 +165,29 @@ pub fn sample_unchecked<R: Rng + ?Sized>(r: &mut R, location: f64, scale: f64, s
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::prelude::*;
+    use test_case::test_case;
+
+    #[test_case(0., 1., 0., 0.0; "neutral shape")]
+    #[test_case(0., 1., -1., -0.557; "negative shape")]
+    #[test_case(0., 1., 1., 0.569; "positive shape")]
+    #[test_case(0., 10., -1., -5.57; "spreaded negative shape")]
+    #[test_case(0., 10., 1., 5.69; "spreaded positive shape")]
+    fn mean(location: f64, scale: f64, shape: f64, expected: f64) {
+        let skew_normal = SkewNormal::new(location, scale, shape).unwrap();
+        let samples = 100_000;
+
+        let result = skew_normal
+            .sample_iter(crate::tests::rng(1))
+            .take(samples)
+            .sum::<f64>()
+            / (samples as f64);
+
+        println!("computed value: {:?}", result);
+        assert!((expected - result).abs() < 1e-2);
+    }
+}

@@ -1,3 +1,8 @@
+# Questions
+
+- Is the expected polymorphisms symmetric with respect to the sign of s?
+- 
+
 # Checking
 
 If s = infinity, then we know that allele frequency must be 1 and therefore the polymorphism is 0.
@@ -37,6 +42,3 @@ I will check the transition first, by fixing s, and then try to simulate this wi
 # To do
 
 - PR for rand_distr for a SkewNormal
-- Implement in R64
-- Test correctness of SkewNormal simulation
-- Add StandardNormal as a struct?

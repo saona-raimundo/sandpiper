@@ -30,6 +30,14 @@ pub mod prelude {
 
 #[cfg(test)]
 mod tests {
+    /// Construct a deterministic RNG with the given seed
+    pub fn rng(seed: u64) -> impl rand::RngCore {
+        // For tests, we want a statistically good, fast, reproducible RNG.
+        // PCG32 will do fine, and will be easy to embed if we ever need to.
+        const INC: u64 = 11634580027462260723;
+        rand_pcg::Pcg32::new(seed, INC)
+    }
+
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);

@@ -1,8 +1,8 @@
 use anyhow::Result;
 use preexplorer::prelude::*;
 use rand::distributions::Distribution;
-use sandpiper::prelude::*;
 use rayon::prelude::*;
+use sandpiper::prelude::*;
 
 const SAMPLES: usize = 1_000_000;
 
@@ -17,9 +17,12 @@ fn main() -> Result<()> {
         let gen_freq = GeneticFreq::new(population, mutation_rate, selection, dominance)?;
         // let rng = rand::thread_rng();
 
-        let realizations = 
-            // gen_freq.sample_iter(rng).take(SAMPLES);
-            (0..SAMPLES).collect::<Vec<usize>>().par_iter().map(|_| gen_freq.sample(&mut rand::thread_rng())).collect::<Vec<f64>>();
+        let realizations = (0..SAMPLES)
+            .collect::<Vec<usize>>()
+            .par_iter()
+            .map(|_| gen_freq.sample(&mut rand::thread_rng()))
+            .collect::<Vec<f64>>();
+        // gen_freq.sample_iter(rng).take(SAMPLES);
 
         // pre::Density::new(&realizations)
         //     .set_title(format!("Genetic frequency. N: {}, U: {}, s: {}, h: {}", population, mutation_rate, selection, dominance))
@@ -60,10 +63,9 @@ fn main() -> Result<()> {
     if false {
         let population = 500_000;
         let mutation_rate = 1.2e-8;
-        // let selections: Vec<f64> = vec![-6e-5, -4e-5, -2e-5]; 
-        let selections: Vec<f64> = vec![6e-5, 4e-5, 2e-5]; 
+        // let selections: Vec<f64> = vec![-6e-5, -4e-5, -2e-5];
+        let selections: Vec<f64> = vec![6e-5, 4e-5, 2e-5];
         let betas: Vec<f64> = vec![1e1, 1e2, 1e3, 1e4, 1e5];
-
 
         let mut densities_vec = Vec::new();
         for selection in selections {
@@ -75,8 +77,8 @@ fn main() -> Result<()> {
                 densities_vec.push(
                     pre::Density::new(realizations)
                         .set_title(format!("s: {}, beta: {}", selection, beta))
-                        .to_owned()
-                    )
+                        .to_owned(),
+                )
             }
         }
 

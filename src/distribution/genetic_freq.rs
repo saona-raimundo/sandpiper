@@ -136,7 +136,6 @@ impl Max<f64> for GeneticFreq {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rand::prelude::*;
 
     #[test]
     fn mean() {

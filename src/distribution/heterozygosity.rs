@@ -22,6 +22,26 @@ pub enum Selection {
     },
 }
 
+impl std::fmt::Display for Selection {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match *self {
+            Selection::Fixed(s) => write!(f, "Fixed selection {}", s),
+            Selection::SkewNormal {
+                location: mu,
+                scale: sigma,
+                shape: alpha,
+                bounds,
+            } => {
+                let mut description = format!("Skew-normal selection with location {}, scale {}, shape {}", mu, sigma, alpha);
+                if let Some((lb, ub)) = bounds {
+                    description += &format!("between {} and {}", lb, ub);
+                };
+                write!(f, "{}", description)
+            }
+        }
+    }
+}
+
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Dominance {
     /// Fixed value.
@@ -29,6 +49,15 @@ pub enum Dominance {
     Sigmoid {
         rate: f64,
     },
+}
+
+impl std::fmt::Display for Dominance {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match *self {
+            Dominance::Fixed(h) => write!(f, "Fixed dominance {}", h),
+            Dominance::Sigmoid{rate: beta} => write!(f, "Sigmoid with rate {}", beta),
+        }
+    }
 }
 
 /// Polymorphisms in the population.

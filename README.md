@@ -1,7 +1,9 @@
 # Questions
 
-- Is the expected polymorphisms symmetric with respect to the sign of s?
-- 
+- The expected polymorphisms is symmetric with respect to the sign of s
+- Beta makes a difference, but close to zero. Moreover, it has a deterministic effect of incrementing polymorphisms
+  - Plot a spectrum of fixed h
+  - Show the aggregation of these plots for different rates 
 
 # Checking
 

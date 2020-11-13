@@ -169,7 +169,6 @@ pub fn sample_unchecked<R: Rng + ?Sized>(r: &mut R, location: f64, scale: f64, s
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rand::prelude::*;
     use test_case::test_case;
 
     #[test_case(0., 1., 0., 0.0; "neutral shape")]

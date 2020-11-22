@@ -32,7 +32,10 @@ impl std::fmt::Display for Selection {
                 shape: alpha,
                 bounds,
             } => {
-                let mut description = format!("Skew-normal selection with location {}, scale {}, shape {}", mu, sigma, alpha);
+                let mut description = format!(
+                    "Skew-normal selection with location {}, scale {}, shape {}",
+                    mu, sigma, alpha
+                );
                 if let Some((lb, ub)) = bounds {
                     description += &format!("between {} and {}", lb, ub);
                 };
@@ -55,7 +58,7 @@ impl std::fmt::Display for Dominance {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match *self {
             Dominance::Fixed(h) => write!(f, "Fixed dominance {}", h),
-            Dominance::Sigmoid{rate: beta} => write!(f, "Sigmoid with rate {}", beta),
+            Dominance::Sigmoid { rate: beta } => write!(f, "Sigmoid with rate {}", beta),
         }
     }
 }
@@ -183,7 +186,7 @@ impl Heterozygosity {
         let selection = self.sample_selection(rng);
         let dominance = match self.dominance {
             Dominance::Fixed(h) => h,
-            Dominance::Sigmoid{ rate } => 1. / (1. + (-rate * selection).exp()),
+            Dominance::Sigmoid { rate } => 1. / (1. + (-rate * selection).exp()),
         };
 
         crate::GeneticFreq::new(self.population, self.mutation_rate, selection, dominance)

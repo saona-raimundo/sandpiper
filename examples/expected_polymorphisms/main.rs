@@ -284,38 +284,35 @@ fn main() {
         }
     }
     // Approximation of conditional expectation for a grid set of parameters
-    if false {
+    if true {
         // Parameters
         // mu
-        let locations = vec![
-            -0.2000000000,
-            -0.1523191619,
-            -0.1160056354,
-            -0.0883494058,
-            -0.0672865373,
-            -0.0512451448,
-            -0.0390280876,
-            -0.0297236279,
-            -0.0226373905,
-            -0.0172405417,
-            -0.0131303243,
-            -0.0100000000,
-        ];
+        let locations = vec![];
         // sigma
-        let scales = vec![1.0];
+        let scales = vec![];
         // let shapes_and_rates = vec![(0., 1000.), (-2.5, 1000.), (0., 7000.)]; //
         // alpha
         let shapes = vec![0., -2., -4.];
         // beta
-        let rates = vec![0., 10., 50., 100., 1000., 5000.]; // vec![1e3]; //
+        let rates = vec![0., 1000., 2000., 3000., 5000., 7000.];
         let variance_samples = 1000;
         let error_limit = 1e-6;
         // Computing redneck
-        if false {
+        if true {
             let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
             let (lower_bound, upper_bound) = (-1.0, 1.0);
             let mut data = Vec::new();
             let mut counter = 0;
+            let progress_bar = ProgressBar::new(
+                u64::min(
+                    end,
+                    (locations.len() * scales.len() * shapes.len() * rates.len()) as u64,
+                ) + 1
+                    - start,
+            )
+            .with_style(
+                ProgressStyle::default_bar().template("[{wide_bar}], {pos}/{len} {eta_precise})"),
+            );
             for location in &locations {
                 for scale in &scales {
                     for shape in &shapes {
@@ -342,6 +339,7 @@ fn main() {
 									.set_title(format!("Computed value {} of conditional expected polymorphisms (between {} and {}). redneck", counter, lower_bound, upper_bound))
 									.plot_later(format!("redneck_poly_{}", counter))
 									.unwrap();
+                                progress_bar.inc(1);
                             }
                         }
                     }
@@ -354,12 +352,22 @@ fn main() {
         }
 
         // Computing sandpiper
-        if false {
+        if true {
             let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);
             let (lower_bound, upper_bound) = (-1.0, 1.0);
 
             let mut data = Vec::new();
             let mut counter = 0;
+            let progress_bar = ProgressBar::new(
+                u64::min(
+                    end,
+                    (locations.len() * scales.len() * shapes.len() * rates.len()) as u64,
+                ) + 1
+                    - start,
+            )
+            .with_style(
+                ProgressStyle::default_bar().template("[{wide_bar}], {pos}/{len} {eta_precise})"),
+            );
             for location in &locations {
                 for scale in &scales {
                     for shape in &shapes {
@@ -387,6 +395,7 @@ fn main() {
 									.set_title(format!("Computed value {} of conditional expected polymorphisms (between {} and {}). sandpiper", counter, lower_bound, upper_bound))
 									.plot_later(format!("sandpiper_poly_{}", counter))
 									.unwrap();
+                                progress_bar.inc(1);
                             }
                         }
                     }

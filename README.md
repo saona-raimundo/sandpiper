@@ -1,20 +1,3 @@
-# Questions
-
-- The expected polymorphisms is symmetric with respect to the sign of s
-- Beta makes a difference, but close to zero. Moreover, it has a deterministic effect of incrementing polymorphisms
-  - Plot a spectrum of fixed h
-  - Show the aggregation of these plots for different rates 
-
-# Checking
-
-If s = infinity, then we know that allele frequency must be 1 and therefore the polymorphism is 0.
-
-If s = - infinity, then allele frequency must be 0 and therefore the polymorphism is 0 too.
-
-If s = 0, then allele frequency is the most random and concentrates around 1/2, therefore the polymorphism is positive.
-
-I will check the transition first, by fixing s, and then try to simulate this with some parameters of the model.
-
 # Next steps
 
 - Computing
@@ -36,11 +19,16 @@ I will check the transition first, by fixing s, and then try to simulate this wi
     - [x] mu: -0.0100000000, -0.0056838040, -0.0032305627, -0.0018361885, -0.0010436536, -0.0005931922, -0.0003371588, -0.0001916345, -0.0001089213, -0.0000619087, -0.0000351877, -0.0000200000
       sigma: 0.0000100000, 0.0000187382, 0.0000351119, 0.0000657933, 0.0001232847, 0.0002310130, 0.0004328761, 0.0008111308, 0.0015199111, 0.0028480359, 0.0053366992, 0.0100000000
       
-    - [x] [Script, Running]
-      alpha: 0, -2, -4;
+    - [x] alpha: 0, -2, -4;
       beta: 10000, 25000, 50000, 100000;
       mu:  -0.1000000000, -0.0638730079, -0.0407976113, -0.0260586615,  -0.0166444509, -0.0106313114, -0.0067905384, -0.0043373211,  -0.0027703775, -0.0017695234, -0.0011302478, -0.0007219233,  -0.0004611141, -0.0002945275, -0.0001881235, -0.0001201602,  -0.0000767499, -0.0000490225, -0.0000313121, -0.0000200000;
       sigma:  0.0000100000, 0.0000162378, 0.0000263665, 0.0000428133, 0.0000695193,  0.0001128838, 0.0001832981, 0.0002976351, 0.0004832930, 0.0007847600,  0.0012742750, 0.0020691381, 0.0033598183, 0.0054555948, 0.0088586679,  0.0143844989, 0.0233572147, 0.0379269019, 0.0615848211, 0.1000000000
+      
+    - [ ] [Script?, Running?]
+      alpha: 0, -2, -4
+      beta: 0, 1000, 2000, 3000, 5000, 7000
+      mu from -0.05 to -0.00001
+      sigma from 0.00001 to 0.05
 # To do
 
 - PR for rand_distr for a SkewNormal

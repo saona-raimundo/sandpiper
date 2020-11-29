@@ -21,39 +21,48 @@ fn main() {
         println!("{:?}", hetero.mc_approx_mean(1000, 1e-6));
     }
 
-    // Varying s for fixed parameter
-    if false {
-        let selections = ndarray::Array::linspace(-1e-1, 1e-1, 20);
-        let h = Dominance::Sigmoid { rate: 1e3 };
+    // Fixed Dominance for various s
+    if true {
+        let selections = grid(); // ndarray::Array::linspace(-1e-1, 1e-1, 20);
+        let h = Dominance::Sigmoid { rate: 2500.0 };
 
         // Compute
-        let mut values: Vec<f64> = selections
+        let values: Vec<f64> = selections
             .iter()
             .map(|&selection| {
-                if selection <= 0.0 {
-                    let hetero = Heterozygosity::new(N_REDNECK, U, Selection::Fixed(selection), h)
-                        .expect("Could not construct Heterozygosity");
-
-                    if selection == 0.0 {
-                        hetero.mc_approx_mean(1000, 1e-4).mean() / 2.
-                    } else {
-                        hetero.mc_approx_mean(1000, 1e-4).mean()
-                    }
-                } else {
-                    0.0
-                }
+                let hetero = Heterozygosity::new(N_REDNECK, U, Selection::Fixed(selection), h)
+                    .expect("Could not construct Heterozygosity");
+                hetero.mc_approx_mean(1000, 1e-4).mean()
             })
             .collect();
-        values = values
-            .iter()
-            .zip(values.iter().rev())
-            .map(|(a, b)| a + b)
-            .collect();
+
         // Visualize
-        (&selections, values)
+        // (&selections, values)
+        //     .preexplore()
+        //     .set_title(format!("Expected polymorphisms. {}", h))
+        //     .set_style(3)
+        //     .set_logy(10)
+        //     .set_logx(10)
+        //     .set_xlabel("selection, s")
+        //     .plot(format!("varying s with {}", h))
+        //     .unwrap();
+
+        let process = (&selections, values)
             .preexplore()
-            .set_title(format!("Expected polymorphisms. {}", h))
+            .set_title(format!("h = {}", h))
             .set_style(3)
+            .to_owned();
+        let reference = (&selections,
+            selections
+                .iter()
+                .map(|_| EMPIRICAL_MEAN_POLYMORPHISMS_REDNECK),
+        )
+            .preexplore()
+            .set_title("redneck value")
+            .to_owned();
+        
+        (reference + process)
+            .set_title("Expected polymorphisms")
             .set_logy(10)
             .set_logx(10)
             .set_xlabel("selection, s")
@@ -61,8 +70,8 @@ fn main() {
             .unwrap();
     }
 
-    // Dominance fixed for varying s
-    if true {
+    // Varying fixed Dominance for various s
+    if false {
         let hs = vec![0., 1.];
         let mut all = Vec::new();
         for h in hs {
@@ -122,7 +131,7 @@ fn main() {
         }
     }
 
-    // Dominance fixed for varying s
+    // Varying sigmoid Dominance for various s
     if false {
         let betas = vec![1, 100, 5_000, 100_000];
         for beta in betas {

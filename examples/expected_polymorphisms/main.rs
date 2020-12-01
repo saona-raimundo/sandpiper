@@ -287,16 +287,17 @@ fn main() {
     if true {
         // Parameters
         // mu
-        let locations = vec![];
+        let locations = ndarray::Array::geomspace(-0.05, -0.00001, 20).unwrap();
+            // vec![];
         // sigma
-        let scales = vec![];
-        // let shapes_and_rates = vec![(0., 1000.), (-2.5, 1000.), (0., 7000.)]; //
+        let scales = ndarray::Array::geomspace(0.00001, 0.05, 20).unwrap();
+            // vec![];
         // alpha
         let shapes = vec![0., -2., -4.];
         // beta
-        let rates = vec![0., 1000., 2000., 3000., 5000., 7000.];
+        let rates = vec![0., 100., 1000., 2000., 3000., 5000., 7000.];
         let variance_samples = 1000;
-        let error_limit = 1e-6;
+        let error_limit = 1e-4;
         // Computing redneck
         if true {
             let (start, end) = (1, u64::MAX); //(locations.len() * scales.len() * shapes.len() * rates.len()) as u64); // 2000);

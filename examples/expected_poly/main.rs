@@ -22,7 +22,7 @@ const ERROR_LIMIT: f64 = 1e-6;
 
 fn main() {
     // Computing redneck
-    if false {
+    if true {
         let (start, end) = (1, usize::MAX); // Sub-sample
         let mut counter: usize = 0;
         let progress_bar = my_progress_bar(start, end);
@@ -54,7 +54,7 @@ fn main() {
     }
 
     // Computing sandpiper
-    if false {
+    if true {
         let (start, end) = (1, usize::MAX); // Sub-sample
         let mut counter = 0;
         let progress_bar = my_progress_bar(start, end);

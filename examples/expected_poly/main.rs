@@ -96,7 +96,7 @@ fn main() {
             let mut writer = csv::Writer::from_writer(output_file);
 
             // Getting data
-            for counter in 1..=16_200 {
+            for counter in 1..=TOTAL {
                 collect_record(&mut writer, "redneck", counter).unwrap();
             }
             writer.flush().unwrap();
@@ -107,7 +107,7 @@ fn main() {
             let mut writer = csv::Writer::from_writer(output_file);
 
             // Getting data
-            for counter in 1..=16_200 {
+            for counter in 1..=TOTAL {
                 collect_record(&mut writer, "sandpiper", counter).unwrap();
             }
             writer.flush().unwrap();

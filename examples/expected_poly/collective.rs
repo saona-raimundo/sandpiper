@@ -11,7 +11,7 @@ use crate::constants::*;
 
 pub fn collective_main() {
     // Computing redneck
-    if true {
+    if false {
         let (start, end) = (1, usize::MAX); // Sub-sample
         let mut counter: usize = 0;
         let progress_bar = my_progress_bar(end.min(TOTAL) + 1 - start);

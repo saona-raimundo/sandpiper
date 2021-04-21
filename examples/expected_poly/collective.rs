@@ -4,6 +4,10 @@ use indicatif::{ProgressBar, ProgressStyle};
 use rand::prelude::*;
 use rayon::prelude::*;
 use sandpiper::{N_REDNECK, N_SANDPIPER, U};
+// const U: f64 = 0.0000012;
+// const N_REDNECK: u64 = 5000;
+// const N_SANDPIPER: u64 = 5000;
+
 // use csv::Writer;
 // use std::fs::File;
 

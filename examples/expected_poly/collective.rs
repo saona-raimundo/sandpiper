@@ -45,9 +45,9 @@ pub fn collective_main() {
             }
         }
         pre::Data::new(data, 6)
-                .set_title("Computed values of expected polymorphisms. Redneck")
-                .plot_later("redneck_all")
-                .unwrap();
+            .set_title("Computed values of expected polymorphisms. Redneck")
+            .plot_later("redneck_all")
+            .unwrap();
     }
 
     // Computing sandpiper

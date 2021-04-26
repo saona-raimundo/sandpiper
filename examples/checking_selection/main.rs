@@ -5,9 +5,9 @@ fn main() {
     // Fixed parameter computation
     if false {
         // Parameters
-        let population_size = 5_000;
-        let mutation_rate = 1.2e-6;
-        let dominance = 0.5; 
+        let population_size = 500;
+        let mutation_rate = 1.2e-5;
+        let dominance = 0.5;
         let selection = 1e-7;
         // Random variable
         let hetero = Heterozygosity::new(
@@ -34,6 +34,7 @@ fn main() {
         let values: Vec<f64> = selections
             .iter()
             .map(|&selection| {
+            	println!("{:?}", chrono::offset::Local::now());
                 let hetero = Heterozygosity::new(
                     population_size,
                     mutation_rate,
@@ -60,13 +61,14 @@ fn main() {
     // Saving data
     if false {
         // Parameters
-        let population_size = 5_000;
-        let mutation_rate = 1.2e-6;
+        let population_size = 500;
+        let mutation_rate = 1.2e-5;
         let dominance = 0.5; 
-        let selections = [1e-1]; // ndarray::Array::geomspace(1e-7, 1e-2, 6).unwrap();
+        let selections = [-1e-1, -1e-2, -1e-3, -1e-4, -1e-5, -1e-6, -1e-7, 0., 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]; // ndarray::Array::geomspace(1e-7, 1e-2, 6).unwrap();
         // Iterate
         let mut data: Vec<f64> = Vec::new();
         for selection in selections.iter() {
+        	println!("{:?}", chrono::offset::Local::now());
             // Compute
             let hetero = Heterozygosity::new(
                     population_size,
@@ -74,7 +76,7 @@ fn main() {
                     Selection::Fixed(*selection),
                     Dominance::Fixed(dominance),
                 ).expect("Could not construct Heterozygosity");
-            let result: average::Variance = hetero.mc_approx_mean(1000, 1e-5);
+            let result: average::Variance = hetero.mc_approx_mean(1000, 1e-6);
             // Recover
             data.extend(&[population_size as f64, mutation_rate, dominance, *selection, result.mean(), result.error()]);
         }

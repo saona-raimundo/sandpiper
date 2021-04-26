@@ -6,7 +6,6 @@ Contrast results with Fyodor's code.
    - mutation rate = 1.2 e-6
    - beta = 0 (or fixed dominance 0.5)
 2. Compute expected polymorphisms ([Heterozygosity](file:///C:/Users/rsaonaur/projects/sandpiper/target/doc/sandpiper/struct.Heterozygosity.html)) for varying values of selection s, with all other parameters fixed. 
-   - -0.01 to 0.01 on a log scale
    - -10^-2, -10^-3, -10^-4, -10^-5, -10^-6, 0, 10^-6, 10^-5, 10^-4, 10^-3, 10^-2
 
 # Results

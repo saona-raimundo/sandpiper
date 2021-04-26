@@ -65,7 +65,11 @@ impl std::fmt::Display for Dominance {
 
 /// Polymorphisms in the population.
 ///
-/// If 'x' is the allele frequency, then the heterozygosity is '2x(1-x)'.
+/// If `x` is the allele frequency, then the heterozygosity is `2x(1-x)`.
+/// 
+/// The density of the allele frequency `x` is proportinal to 
+/// `exp(2 * population * selection * (x^2 + 2 * dominance * x * (1 - x))) 
+/// * x^(4 * population * mutation_rate - 1) * (1 - x)^(4 population * mutation_rate - 1)`.
 ///
 /// # Examples
 ///

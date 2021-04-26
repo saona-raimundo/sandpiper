@@ -3,26 +3,28 @@ use sandpiper::prelude::*;
 
 fn main() {
     // Fixed parameter computation
-    if false {
+    if true {
         let hetero = Heterozygosity::new(
-            N_REDNECK,
-            U,
-            Selection::Fixed(1e-7),
-            // SkewNormal {
-            //     location: 0.00001,
-            //     scale: 0.0001,
-            //     shape: -2.,
-            //     bounds: None,
-            // },
+            500,
+            1.2e-5,
+            // Selection::Fixed(1e-7),
+            Selection::SkewNormal {
+                location: -0.0000774461,
+                scale: 0.0000126414,
+                shape: 0.0,
+                bounds: Some((-1., 1.)),
+            },
             Dominance::Fixed(0.5),
         )
         .unwrap();
 
-        println!("{:?}", hetero.mc_approx_mean(1000, 1e-6));
+        let result = hetero.mc_approx_mean(1000, 1e-6);
+        println!("{:?}", result);
+        println!("{} \n{}", result.mean(), result.error());
     }
 
     // Fixed Dominance for various s
-    if true {
+    if false {
         let selections = grid(); // ndarray::Array::linspace(-1e-1, 1e-1, 20);
         let h = Dominance::Sigmoid { rate: 2500.0 };
 

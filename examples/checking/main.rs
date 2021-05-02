@@ -3,21 +3,25 @@ use sandpiper::prelude::*;
 
 fn main() {
     // Fixed parameter computation
-    if true {
+    if false {
+        // Parameters
+        let population_size = 5000;
+        let mutation_rate = 1.2e-6;
+        let beta = 3_000.0;
+        // Random variable
         let hetero = Heterozygosity::new(
-            500,
-            1.2e-5,
-            // Selection::Fixed(1e-7),
+            population_size,
+            mutation_rate,
             Selection::SkewNormal {
-                location: -0.0000774461,
-                scale: 0.0000126414,
+                location: -0.13458588,
+                scale: 0.0377358,
                 shape: 0.0,
                 bounds: Some((-1., 1.)),
             },
-            Dominance::Fixed(0.5),
+            Dominance::Sigmoid{rate: beta},
         )
         .unwrap();
-
+        // Computation
         let result = hetero.mc_approx_mean(1000, 1e-6);
         println!("{:?}", result);
         println!("{} \n{}", result.mean(), result.error());

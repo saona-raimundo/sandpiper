@@ -4,11 +4,11 @@ use rand::distributions::Distribution;
 use rayon::prelude::*;
 use sandpiper::prelude::*;
 
-const SAMPLES: usize = 1_000_000;
+const SAMPLES: usize = 10_000_000;
 
 fn main() -> Result<()> {
     // Single genetic frequency
-    if true {
+    if false {
         let population = N_REDNECK;
         let mutation_rate = U;
         let selection = -0.00001;
@@ -34,7 +34,7 @@ fn main() -> Result<()> {
         println!("Mean: {}", mean);
     }
 
-    // Single Beta
+    // Single Beta random variable
     if false {
         let population = 1;
         let mutation_rate = 1e-4;
@@ -60,10 +60,40 @@ fn main() -> Result<()> {
     }
 
     // Various genetic frequencies
+    // Estimating statistics
+    if true {
+        let population = 5_00;
+        let mutation_rate = 1.2e-5;
+        let selections: Vec<f64> = vec![-1e-0, 1e-0];
+        let betas: Vec<f64> = vec![0.];
+
+        for selection in selections {
+        	println!("selection: {:?}", selection);
+            for beta in &betas {
+                let dominance = 1. / (1. + (-beta * selection).exp() as f64);
+                let gen_freq = GeneticFreq::new(population, mutation_rate, selection, dominance)?;
+                let rng = rand::thread_rng();
+                let realizations = gen_freq.sample_iter(rng)
+                	.take(SAMPLES);
+                let mut histo = quantiles::histogram::Histogram::<f64>::new(
+                	vec![0., 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 0.5, 1.-1e-1, 1.-1e-2, 1.-1e-3, 1.-1e-4, 1.-1e-5, 1.-1e-6, 1.]
+                ).unwrap();
+				for realization in realizations {
+				    histo.insert(realization);
+				}
+				for (_bound, count) in histo.iter() {
+					println!("{:?}", count);
+				}
+				// println!("{:#?}", histo);
+            }
+        }
+    }
+
+    // Various genetic frequencies and betas
+    // Plotting
     if false {
         let population = 500_000;
         let mutation_rate = 1.2e-8;
-        // let selections: Vec<f64> = vec![-6e-5, -4e-5, -2e-5];
         let selections: Vec<f64> = vec![6e-5, 4e-5, 2e-5];
         let betas: Vec<f64> = vec![1e1, 1e2, 1e3, 1e4, 1e5];
 

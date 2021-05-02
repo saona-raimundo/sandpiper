@@ -28,4 +28,5 @@ ndarray = "0.13.1"
 rand_pcg = "0.2.1"
 clap = "2.33.3"
 csv = "1.1.5"
+quantiles = "0.7.1"
 

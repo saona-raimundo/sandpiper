@@ -3,6 +3,7 @@ use sandpiper::prelude::*;
 
 fn main() {
     // Fixed parameter computation
+    // Fixed dominance
     if false {
         // Parameters
         let population_size = 500;
@@ -15,6 +16,26 @@ fn main() {
             mutation_rate,
             Selection::Fixed(selection),
             Dominance::Fixed(dominance),
+        )
+        .unwrap();
+        // Computation
+        println!("{:?}", hetero.mc_approx_mean(1000, 1e-6));
+    }
+
+    // Fixed parameter computation
+    // Sigmoidal dominance
+    if false {
+        // Parameters
+        let population_size = 5000;
+        let mutation_rate = 1.2e-6;
+        let beta = 3_000.0;
+        let selection = 1e-7;
+        // Random variable
+        let hetero = Heterozygosity::new(
+            population_size,
+            mutation_rate,
+            Selection::Fixed(selection),
+            Dominance::Sigmoid{rate: beta},
         )
         .unwrap();
         // Computation
@@ -59,11 +80,11 @@ fn main() {
 
     // Varying only selection s
     // Saving data
-    if false {
+    if true {
         // Parameters
         let population_size = 500;
         let mutation_rate = 1.2e-5;
-        let dominance = 0.5; 
+        let rate = 3_000.0; 
         let selections = [-1e-1, -1e-2, -1e-3, -1e-4, -1e-5, -1e-6, -1e-7, 0., 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]; // ndarray::Array::geomspace(1e-7, 1e-2, 6).unwrap();
         // Iterate
         let mut data: Vec<f64> = Vec::new();
@@ -74,13 +95,14 @@ fn main() {
                     population_size,
                     mutation_rate,
                     Selection::Fixed(*selection),
-                    Dominance::Fixed(dominance),
+                    Dominance::Sigmoid{rate},
                 ).expect("Could not construct Heterozygosity");
-            let result: average::Variance = hetero.mc_approx_mean(1000, 1e-6);
+            let result: average::Variance = hetero.mc_approx_mean(1_000, 1e-6);
             // Recover
-            data.extend(&[population_size as f64, mutation_rate, dominance, *selection, result.mean(), result.error()]);
+            data.extend(&[population_size as f64, mutation_rate, rate, *selection, result.mean(), result.error()]);
         }
         // Save
+        pre::clean().unwrap();
         pre::Data::new(data, 6)
             .set_title("Computed values of expected polymorphisms. Redneck")
             .save_with_id("varying_selection")

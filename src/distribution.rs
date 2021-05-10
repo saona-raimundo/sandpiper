@@ -1,6 +1,6 @@
 pub use self::beta::Beta;
 pub use self::genetic_freq::GeneticFreq;
-pub use self::heterozygosity::{Dominance, Heterozygosity, Selection};
+pub use self::heterozygosity::{Dominance, Heterozygosity, UnfixedHeterozygosity, Selection, UpperBound};
 pub use self::normal::Normal;
 pub use self::skew_normal::SkewNormal;
 

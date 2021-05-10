@@ -85,7 +85,7 @@ fn main() {
         let population_size = 500;
         let mutation_rate = 1.2e-5;
         let rate = 3_000.0; 
-        let selections = [-1e-1, -1e-2, -1e-3, -1e-4, -1e-5, -1e-6, -1e-7, 0., 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]; // ndarray::Array::geomspace(1e-7, 1e-2, 6).unwrap();
+        let selections = [0.]; // [-1e-1, -1e-2, -1e-3, -1e-4, -1e-5, -1e-6, -1e-7, 0., 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]; // ndarray::Array::geomspace(1e-7, 1e-2, 6).unwrap();
         // Iterate
         let mut data: Vec<f64> = Vec::new();
         for selection in selections.iter() {
@@ -101,6 +101,8 @@ fn main() {
             // Recover
             data.extend(&[population_size as f64, mutation_rate, rate, *selection, result.mean(), result.error()]);
         }
+        // Report
+        println!("{:#?}", data);
         // Save
         pre::clean().unwrap();
         pre::Data::new(data, 6)

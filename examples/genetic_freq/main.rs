@@ -4,7 +4,7 @@ use rand::distributions::Distribution;
 use rayon::prelude::*;
 use sandpiper::prelude::*;
 
-const SAMPLES: usize = 10_000_000;
+const SAMPLES: usize = 10_000; // _000;
 
 fn main() -> Result<()> {
     // Single genetic frequency
@@ -61,7 +61,7 @@ fn main() -> Result<()> {
 
     // Various genetic frequencies
     // Estimating statistics
-    if true {
+    if false {
         let population = 5_00;
         let mutation_rate = 1.2e-5;
         let selections: Vec<f64> = vec![-1e-0, 1e-0];
@@ -92,10 +92,10 @@ fn main() -> Result<()> {
     // Various genetic frequencies and betas
     // Plotting
     if false {
-        let population = 500_000;
-        let mutation_rate = 1.2e-8;
-        let selections: Vec<f64> = vec![6e-5, 4e-5, 2e-5];
-        let betas: Vec<f64> = vec![1e1, 1e2, 1e3, 1e4, 1e5];
+        let population = 500;
+        let mutation_rate = 1.2e-4;
+        let selections: Vec<f64> = vec![1e-6, 1e-3, 1e-1, 5e-1];
+        let betas: Vec<f64> = vec![0., 1e1, 1e5];
 
         let mut densities_vec = Vec::new();
         for selection in selections {
@@ -116,8 +116,60 @@ fn main() -> Result<()> {
             .set_title("Genetic frequency for red-neck")
             .set_xlabel("frequency")
             .set_ylabel("density value")
-            .set_xrange(0., 0.015)
+            // .set_xrange(0., 0.015)
             .plot("genetic_freuqncies")
+            .unwrap();
+    }
+
+    // One genetic frequency for the UnfixedHeterozygosity
+    // Plotting
+    if true {
+        let population = 100;
+        let mutation_rate = 1.2e-4;
+        let selection: f64 = 5e-1;
+        let beta: f64 = 0.;
+
+        let dominance = 1. / (1. + (-beta * selection).exp() as f64);
+        let hetero = UnfixedHeterozygosity::new(population, mutation_rate, sandpiper::Selection::Fixed(selection), sandpiper::Dominance::Fixed(dominance))?;
+        let mut rng = rand::thread_rng();
+        let realizations = (0..SAMPLES).map(|_| hetero.sample_frequency(&mut rng));
+
+        pre::Density::new(realizations)
+            .set_title(format!("s: {}, beta: {}", selection, beta))
+            .set_xlabel("frequency")
+            .set_ylabel("density value")
+            .plot("unfixed_genetic_frequency")
+            .unwrap();
+    }
+
+    // Various genetic frequencies and betas for the UnfixedHeterozygosity
+    // Plotting
+    if true {
+        let population = 500;
+        let mutation_rate = 1.2e-4;
+        let selections: Vec<f64> = vec![1e-6, 1e-3, 1e-1, 5e-1];
+        let betas: Vec<f64> = vec![0., 1e1, 1e5];
+
+        let mut densities_vec = Vec::new();
+        for selection in selections {
+            for beta in &betas {
+                let dominance = 1. / (1. + (-beta * selection).exp() as f64);
+                let hetero = UnfixedHeterozygosity::new(population, mutation_rate, sandpiper::Selection::Fixed(selection), sandpiper::Dominance::Fixed(dominance))?;
+                let mut rng = rand::thread_rng();
+                let realizations = (0..SAMPLES).map(|_| hetero.sample_frequency(&mut rng));
+                densities_vec.push(
+                    pre::Density::new(realizations)
+                        .set_title(format!("s: {}, beta: {}", selection, beta))
+                        .to_owned(),
+                )
+            }
+        }
+
+        pre::Densities::new(densities_vec)
+            .set_title("Genetic frequency for red-neck")
+            .set_xlabel("frequency")
+            .set_ylabel("density value")
+            .plot("unfixed_genetic_frequencies")
             .unwrap();
     }
 

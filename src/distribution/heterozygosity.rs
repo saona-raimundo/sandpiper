@@ -260,6 +260,224 @@ impl Max<f64> for Heterozygosity {
     }
 }
 
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub enum UpperBound {
+    Smallest, // 1 - 1/(2N)
+    Midpoint, // 1 - 1/(4N)
+    Largest, // 1
+}
+
+/// Polymorphisms in a population with a trait that is not fixed.
+///
+/// If `x` is the allele frequency, then the heterozygosity is `2x(1-x)`.
+/// 
+/// The density of the allele frequency `x` is proportinal to 
+/// `exp(2 * population * selection * (x^2 + 2 * dominance * x * (1 - x))) 
+/// * x^(4 * population * mutation_rate - 1) * (1 - x)^(4 population * mutation_rate - 1)`,
+/// and we add the restriction that `x > 1 - 1/(2N)`, where `N` is the population size.
+///
+/// # Examples
+///
+/// ```
+/// use sandpiper::{UnfixedHeterozygosity, Selection, Dominance};
+///
+/// let population = 1000;
+/// let mutation_rate = 0.00001;
+/// let selection = Selection::Fixed(0.0);
+/// let dominance = Dominance::Fixed(0.5);
+/// let unfixed_hetero = UnfixedHeterozygosity::new(population, mutation_rate, selection, dominance).unwrap();
+/// ```
+#[derive(Debug, Copy, Clone, PartialEq)]
+pub struct UnfixedHeterozygosity {
+    population: u64,    // N
+    mutation_rate: f64, // U
+    selection: Selection,
+    dominance: Dominance,
+    frequency_upper_bound: f64,
+}
+
+impl UnfixedHeterozygosity {
+    /// Constructs a new UnfixedHeterozygosity distribution.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if `dominance` is not in the interval [0, 1]
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use sandpiper::{Heterozygosity, Selection, Dominance};
+    ///
+    /// let population = 1000;
+    /// let mutation_rate = 0.00001;
+    /// let selection = Selection::Fixed(0.0);
+    /// let dominance = Dominance::Fixed(0.5);
+    /// let upper_bound = sandpiper::UpperBound::Smallest;
+    ///
+    /// let result = UnfixedHeterozygosity::new(population, mutation_rate, selection, dominance, upper_bound);
+    /// assert!(result.is_ok());
+    ///
+    /// let dominance = Dominance::Fixed(-0.5);
+    /// let result = Heterozygosity::new(population, mutation_rate, selection, dominance);
+    /// assert!(result.is_err());
+    /// ```
+    pub fn new(
+        population: u64,
+        mutation_rate: f64,
+        selection: Selection,
+        dominance: Dominance,
+        upper_bound: UpperBound,
+    ) -> Result<Self> {
+        match selection {
+            Selection::Fixed(s) => {
+                if s.is_nan() {
+                    return Err(StatsError::BadParams);
+                }
+            }
+            Selection::SkewNormal {
+                location,
+                scale,
+                shape,
+                bounds,
+            } => {
+                if location.is_nan() || scale.is_nan() || scale <= 0.0 || shape.is_nan() {
+                    return Err(StatsError::BadParams);
+                }
+                if let Some((lower_bound, upper_bound)) = bounds {
+                    if upper_bound < lower_bound {
+                        return Err(StatsError::BadParams);
+                    }
+                }
+            }
+        }
+        match dominance {
+            Dominance::Fixed(h) => {
+                if h.is_nan() || h < 0.0 {
+                    return Err(StatsError::BadParams);
+                }
+            }
+            Dominance::Sigmoid { rate } => {
+                if rate < 0.0 || rate.is_nan() {
+                    return Err(StatsError::BadParams);
+                }
+            }
+        }
+        let frequency_upper_bound = match upper_bound {
+            UpperBound::Smallest => 1. - 1. / (2. * population as f64),
+            UpperBound::Midpoint => 1. - 1. / (4. * population as f64),
+            UpperBound::Largest => 1.,
+        };
+
+        Ok(UnfixedHeterozygosity {
+            population,
+            mutation_rate,
+            selection,
+            dominance,
+            frequency_upper_bound,
+        })
+    }
+
+    /// Samples from the selection 's'.
+    pub fn sample_selection<R: Rng + ?Sized>(&self, rng: &mut R) -> f64 {
+        match self.selection {
+            Selection::Fixed(s) => s,
+            Selection::SkewNormal {
+                location,
+                scale,
+                shape,
+                bounds,
+            } => {
+                let random_selection = crate::SkewNormal::new(location, scale, shape).unwrap();
+                let mut proposal = random_selection.sample(rng);
+                if let Some((lower_bound, upper_bound)) = bounds {
+                    while (proposal < lower_bound) || (proposal > upper_bound) {
+                        proposal = random_selection.sample(rng);
+                    }
+                }
+                proposal
+            }
+        }
+    }
+
+    /// Samples from the allele frequency 'x' that will lead to heterozygosity '2 x (1 - x)'.
+    pub fn sample_frequency<R: Rng + ?Sized>(&self, rng: &mut R) -> f64 {
+        let selection = self.sample_selection(rng);
+        let dominance = match self.dominance {
+            Dominance::Fixed(h) => h,
+            Dominance::Sigmoid { rate } => 1. / (1. + (-rate * selection).exp()),
+        };
+
+        let random_frequency = crate::GeneticFreq::new(self.population, self.mutation_rate, selection, dominance)
+            .unwrap();
+        let mut proposal = random_frequency.sample(rng);
+        while proposal > self.frequency_upper_bound {
+            proposal = random_frequency.sample(rng);
+        }
+        proposal
+    }
+
+    /// Returns a empirical average with the given number of samples.
+    pub fn mc_mean(&self, samples: usize) -> average::Mean {
+        (0..samples)
+            .into_par_iter()
+            .map(|_| self.sample(&mut rand::thread_rng()))
+            .collect::<Vec<f64>>()
+            .iter()
+            .collect()
+    }
+
+    /// Approximates the expectation with approximated variance to match up the error limit given.
+    pub fn mc_approx_mean(&self, variance_samples: usize, error_limit: f64) -> average::Variance {
+        let mut samples = 1000;
+        // Sample
+        let mut mc_mean_samples = (0..variance_samples)
+            .into_par_iter()
+            .map(|_| self.mc_mean(samples))
+            .collect::<Vec<average::Mean>>();
+        // Summarize
+        let mut variance: average::Variance = mc_mean_samples
+            .iter()
+            .map(|mc_mean_sample| mc_mean_sample.mean())
+            .collect();
+        while variance.error() > error_limit {
+            samples *= 2;
+            // Enhace samples
+            mc_mean_samples = mc_mean_samples
+                .into_par_iter()
+                .update(|mc_mean_sample| mc_mean_sample.merge(&self.mc_mean(samples)))
+                .collect::<Vec<average::Mean>>();
+            // Summarize
+            variance = mc_mean_samples
+                .iter()
+                .map(|mc_mean_sample| mc_mean_sample.mean())
+                .collect();
+        }
+        variance
+    }
+}
+
+impl Distribution<f64> for UnfixedHeterozygosity {
+    fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> f64 {
+        let x = self.sample_frequency(rng);
+
+        2. * x * (1. - x)
+    }
+}
+
+impl Min<f64> for UnfixedHeterozygosity {
+    /// Returns the minimum value in the domain
+    fn min(&self) -> f64 {
+        0.0
+    }
+}
+
+impl Max<f64> for UnfixedHeterozygosity {
+    /// Returns the maximum value in the domain
+    fn max(&self) -> f64 {
+        0.5
+    }
+}
+
 // #[cfg(test)]
 // mod tests {
 //     use rand::prelude::*;

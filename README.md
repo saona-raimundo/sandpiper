@@ -41,6 +41,4 @@
       alpha = {0., -2., -4.}
     
   - [ ] mu = -0.0195556029, sigma = 0.0132709376, alpha = 0, beta = 0, mutation rate 0.0000012 and population size 5000
-# To do
 
-- PR for rand_distr for a SkewNormal

@@ -11,7 +11,7 @@ pub use self::statistic::*;
 /// Empirical data and overall constants.
 mod constants;
 /// Distributions.
-mod distribution;
+pub mod distribution;
 /// Errors and results from this crate.
 pub mod error;
 /// Parameters of the model.

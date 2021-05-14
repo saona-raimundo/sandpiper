@@ -1,6 +1,6 @@
-use preexplorer::prelude::*;
 use average::Variance;
 use indicatif::{ProgressBar, ProgressStyle};
+use preexplorer::prelude::*;
 use rand::prelude::*;
 use rayon::prelude::*;
 use sandpiper::{N_REDNECK, N_SANDPIPER, U};
@@ -37,7 +37,14 @@ pub fn collective_main() {
                                 ERROR_LIMIT,
                             );
                             // Save
-                            data.extend(&[*location, *scale, *shape, *rate, result.mean(), result.error()]);
+                            data.extend(&[
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                result.mean(),
+                                result.error(),
+                            ]);
                             progress_bar.inc(1);
                         }
                     }
@@ -62,19 +69,25 @@ pub fn collective_main() {
                     for rate in &BETAS {
                         counter += 1;
                         if start <= counter && counter <= end {
-                            let result: Variance =
-                                approximate_conditional_expectation_sandpiper(
-                                    LOWER_S,
-                                    UPPER_S,
-                                    *location,
-                                    *scale,
-                                    *shape,
-                                    *rate,
-                                    VARIANCE_SAMPLES,
-                                    ERROR_LIMIT,
-                                );
+                            let result: Variance = approximate_conditional_expectation_sandpiper(
+                                LOWER_S,
+                                UPPER_S,
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                VARIANCE_SAMPLES,
+                                ERROR_LIMIT,
+                            );
                             // Save
-                            data.extend(&[*location, *scale, *shape, *rate, result.mean(), result.error()]);
+                            data.extend(&[
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                result.mean(),
+                                result.error(),
+                            ]);
                             progress_bar.inc(1);
                         }
                     }
@@ -82,14 +95,14 @@ pub fn collective_main() {
             }
         }
         pre::Data::new(data, 6)
-                .set_title("Computed values of expected polymorphisms. Sandpiper")
-                .plot_later("sandpiper_all")
-                .unwrap();
+            .set_title("Computed values of expected polymorphisms. Sandpiper")
+            .plot_later("sandpiper_all")
+            .unwrap();
     }
 }
 
 fn my_progress_bar(end: usize) -> ProgressBar {
-	ProgressBar::new(end as u64).with_style(
+    ProgressBar::new(end as u64).with_style(
         ProgressStyle::default_bar().template("[{wide_bar}], {pos}/{len} {eta_precise})"),
     )
 }

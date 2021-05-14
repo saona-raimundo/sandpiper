@@ -1,12 +1,12 @@
+use crate::constants::*;
 use average::Variance;
+use csv::Writer;
 use indicatif::{ProgressBar, ProgressStyle};
 use rand::prelude::*;
 use rayon::prelude::*;
 use sandpiper::{N_REDNECK, N_SANDPIPER, U};
-use csv::Writer;
-use std::fs::OpenOptions;
 use std::fs::File;
-use crate::constants::*;
+use std::fs::OpenOptions;
 
 pub fn individual_main() {
     // Computing redneck
@@ -31,7 +31,14 @@ pub fn individual_main() {
                                 ERROR_LIMIT,
                             );
                             // Save
-                            let data = [*location, *scale, *shape, *rate, result.mean(), result.error()];
+                            let data = [
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                result.mean(),
+                                result.error(),
+                            ];
                             save(data, "redneck", counter).unwrap();
                             progress_bar.inc(1);
                             progress_bar.reset_eta();
@@ -53,20 +60,26 @@ pub fn individual_main() {
                     for rate in &BETAS {
                         counter += 1;
                         if start <= counter && counter <= end {
-                            let result: Variance =
-                                approximate_conditional_expectation_sandpiper(
-                                    LOWER_S,
-                                    UPPER_S,
-                                    *location,
-                                    *scale,
-                                    *shape,
-                                    *rate,
-                                    VARIANCE_SAMPLES,
-                                    ERROR_LIMIT,
-                                );
+                            let result: Variance = approximate_conditional_expectation_sandpiper(
+                                LOWER_S,
+                                UPPER_S,
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                VARIANCE_SAMPLES,
+                                ERROR_LIMIT,
+                            );
 
                             // Save
-                            let data = [*location, *scale, *shape, *rate, result.mean(), result.error()];
+                            let data = [
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                result.mean(),
+                                result.error(),
+                            ];
                             save(data, "sandpiper", counter).unwrap();
                             progress_bar.inc(1);
                             progress_bar.reset_eta();
@@ -76,7 +89,6 @@ pub fn individual_main() {
             }
         }
     }
-
 
     // Putting all results together
     if true {
@@ -105,7 +117,11 @@ pub fn individual_main() {
     }
 }
 
-fn collect_record(writer: &mut csv::Writer<File>, bird: &str, counter: usize) -> Result<(), std::io::Error> {
+fn collect_record(
+    writer: &mut csv::Writer<File>,
+    bird: &str,
+    counter: usize,
+) -> Result<(), std::io::Error> {
     let source_path = format!("{}_poly_{}.csv", bird, counter);
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(false)
@@ -119,26 +135,20 @@ fn collect_record(writer: &mut csv::Writer<File>, bird: &str, counter: usize) ->
 }
 
 fn my_progress_bar(start: usize, end: usize) -> ProgressBar {
-	ProgressBar::new(
-        (
-        	end.min(TOTAL)
-			+ 1 - start
-		) as u64
-    )
-    .with_style(
+    ProgressBar::new((end.min(TOTAL) + 1 - start) as u64).with_style(
         ProgressStyle::default_bar().template("[{wide_bar}], {pos}/{len} {eta_precise})"),
     )
 }
 
 fn save(data: [f64; 6], bird: &str, counter: usize) -> anyhow::Result<()> {
     let file = OpenOptions::new()
-    	.append(true)
-    	.create(true)
-    	.open(format!("{}_poly_{}.csv", bird, counter))?;
-	let mut writer = Writer::from_writer(file);
-	writer.serialize(data)?;
-	writer.flush()?;
-	Ok(())
+        .append(true)
+        .create(true)
+        .open(format!("{}_poly_{}.csv", bird, counter))?;
+    let mut writer = Writer::from_writer(file);
+    writer.serialize(data)?;
+    writer.flush()?;
+    Ok(())
 }
 
 fn approximate_conditional_expectation_sandpiper(

@@ -16,7 +16,6 @@ mod constants {
 mod collective;
 mod individual;
 
-
 fn main() {
     if true {
         collective::collective_main();

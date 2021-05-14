@@ -18,7 +18,7 @@ fn main() {
                 shape: 0.0,
                 bounds: Some((-1., 1.)),
             },
-            Dominance::Sigmoid{rate: beta},
+            Dominance::Sigmoid { rate: beta },
         )
         .unwrap();
         // Computation
@@ -58,7 +58,8 @@ fn main() {
             .set_title(format!("h = {}", h))
             .set_style(3)
             .to_owned();
-        let reference = (&selections,
+        let reference = (
+            &selections,
             selections
                 .iter()
                 .map(|_| EMPIRICAL_MEAN_POLYMORPHISMS_REDNECK),
@@ -66,7 +67,7 @@ fn main() {
             .preexplore()
             .set_title("redneck value")
             .to_owned();
-        
+
         (reference + process)
             .set_title("Expected polymorphisms")
             .set_logy(10)

@@ -21,9 +21,9 @@ criterion_main!(benches);
 // fn unfixed_hetero(samples: usize) -> Vec<f64> {
 //     vec![1.]
 //     // let hetero = UnfixedHeterozygosity::new(
-//     //     N, 
-//     //     U, 
-//     //     Selection::Fixed(S), 
+//     //     N,
+//     //     U,
+//     //     Selection::Fixed(S),
 //     //     Dominance::Sigmoid{rate: B}
 //     // ).unwrap();
 //     // // Sampling
@@ -34,9 +34,9 @@ criterion_main!(benches);
 // fn hetero() -> f64 {
 //     vec![1.]
 //     // let hetero = Heterozygosity::new(
-//     //     N, 
-//     //     U, 
-//     //     Selection::Fixed(S), 
+//     //     N,
+//     //     U,
+//     //     Selection::Fixed(S),
 //     //     Dominance::Sigmoid{rate: B}
 //     // ).unwrap();
 //     // // Sampling
@@ -44,13 +44,12 @@ criterion_main!(benches);
 //     // (0..samples).map(|_| hetero.sample_frequency(&mut rng)).collect()
 // }
 
-
 // fn bench_fibs(c: &mut Criterion) {
 //     let mut group = c.benchmark_group("Simulation");
 //     for i in [20].iter() {
-//         group.bench_with_input(BenchmarkId::new("Unfixed", i), i, 
+//         group.bench_with_input(BenchmarkId::new("Unfixed", i), i,
 //             |b, i| b.iter(|| unfixed_hetero(*i)));
-//         group.bench_with_input(BenchmarkId::new("Free", i), i, 
+//         group.bench_with_input(BenchmarkId::new("Free", i), i,
 //             |b, i| b.iter(|| hetero(*i)));
 //     }
 //     group.finish();

@@ -288,10 +288,10 @@ fn main() {
         // Parameters
         // mu
         let locations = ndarray::Array::geomspace(-0.05, -0.00001, 20).unwrap();
-            // vec![];
+        // vec![];
         // sigma
         let scales = ndarray::Array::geomspace(0.00001, 0.05, 20).unwrap();
-            // vec![];
+        // vec![];
         // alpha
         let shapes = vec![0., -2., -4.];
         // beta

@@ -40,7 +40,6 @@ fn main() -> Result<(), Error> {
             }
             writer.flush()?;
         }
-    
     }
 
     Ok(())

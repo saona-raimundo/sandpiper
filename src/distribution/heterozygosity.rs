@@ -66,9 +66,9 @@ impl std::fmt::Display for Dominance {
 /// Polymorphisms in the population.
 ///
 /// If `x` is the allele frequency, then the heterozygosity is `2x(1-x)`.
-/// 
-/// The density of the allele frequency `x` is proportinal to 
-/// `exp(2 * population * selection * (x^2 + 2 * dominance * x * (1 - x))) 
+///
+/// The density of the allele frequency `x` is proportinal to
+/// `exp(2 * population * selection * (x^2 + 2 * dominance * x * (1 - x)))
 /// * x^(4 * population * mutation_rate - 1) * (1 - x)^(4 population * mutation_rate - 1)`.
 ///
 /// # Examples
@@ -264,15 +264,15 @@ impl Max<f64> for Heterozygosity {
 pub enum UpperBound {
     Smallest, // 1 - 1/(2N)
     Midpoint, // 1 - 1/(4N)
-    Largest, // 1
+    Largest,  // 1
 }
 
 /// Polymorphisms in a population with a trait that is not fixed.
 ///
 /// If `x` is the allele frequency, then the heterozygosity is `2x(1-x)`.
-/// 
-/// The density of the allele frequency `x` is proportinal to 
-/// `exp(2 * population * selection * (x^2 + 2 * dominance * x * (1 - x))) 
+///
+/// The density of the allele frequency `x` is proportinal to
+/// `exp(2 * population * selection * (x^2 + 2 * dominance * x * (1 - x)))
 /// * x^(4 * population * mutation_rate - 1) * (1 - x)^(4 population * mutation_rate - 1)`,
 /// and we add the restriction that `x > 1 - 1/(2N)`, where `N` is the population size.
 ///
@@ -407,8 +407,9 @@ impl UnfixedHeterozygosity {
             Dominance::Sigmoid { rate } => 1. / (1. + (-rate * selection).exp()),
         };
 
-        let random_frequency = crate::GeneticFreq::new(self.population, self.mutation_rate, selection, dominance)
-            .unwrap();
+        let random_frequency =
+            crate::GeneticFreq::new(self.population, self.mutation_rate, selection, dominance)
+                .unwrap();
         let mut proposal = random_frequency.sample(rng);
         while proposal > self.frequency_upper_bound {
             proposal = random_frequency.sample(rng);

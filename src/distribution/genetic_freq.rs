@@ -8,7 +8,9 @@ use crate::distribution::Beta;
 use crate::error::{Result, StatsError};
 use std::f64;
 
-/// Distribution over allele frequency.
+/// Distribution over allele frequency with density over [0, 1] given by
+///
+/// `\propto \exp(2 * population * selection * (x^2 + 2 * dominance * x * (1 - x))) * (x * (1 - x))^(4 * population * mutation_rate - 1)`
 ///
 /// # Examples
 ///

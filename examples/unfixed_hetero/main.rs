@@ -12,18 +12,26 @@ fn main() -> anyhow::Result<()> {
         let rate: f64 = 3000.;
         // Random variable
         let hetero = UnfixedHeterozygosity::new(
-            population, 
-            mutation_rate, 
-            Selection::Fixed(selection), 
-            Dominance::Sigmoid{rate}, 
-            UpperBound::Smallest
+            population,
+            mutation_rate,
+            Selection::Fixed(selection),
+            Dominance::Sigmoid { rate },
+            UpperBound::Smallest,
         )?;
         // Sampling
         let samples = 1_000;
         let mut rng = rand::thread_rng();
-        let realizations: Vec<f64> = (0..samples).map(|_| hetero.sample_frequency(&mut rng)).collect();
+        let realizations: Vec<f64> = (0..samples)
+            .map(|_| hetero.sample_frequency(&mut rng))
+            .collect();
         // Reporting
-        println!("Empirical max: {:?}", realizations.iter().map(|x| ordered_float::NotNan::new(*x).unwrap()).max());
+        println!(
+            "Empirical max: {:?}",
+            realizations
+                .iter()
+                .map(|x| ordered_float::NotNan::new(*x).unwrap())
+                .max()
+        );
         println!("Theoretical max: {:?}", 1. - 1. / (2. * population as f64));
         //Plotting
         pre::Density::new(realizations)
@@ -47,8 +55,8 @@ fn main() -> anyhow::Result<()> {
             population_size,
             mutation_rate,
             Selection::Fixed(selection),
-            Dominance::Sigmoid{rate: beta}, 
-            UpperBound::Smallest
+            Dominance::Sigmoid { rate: beta },
+            UpperBound::Smallest,
         )?;
         // Computation
         let result = hetero.mc_approx_mean(1000, 1e-4);
@@ -69,26 +77,32 @@ fn main() -> anyhow::Result<()> {
         // Iterations
         let mut data: Vec<f64> = vec![];
         for selection in selections {
-        	println!("{:?}", chrono::offset::Local::now());
-        	for beta in &betas {
-        		// Random variable
-		        let hetero = UnfixedHeterozygosity::new(
-		            population_size,
-		            mutation_rate,
-		            Selection::Fixed(selection),
-		            Dominance::Sigmoid{rate: *beta}, 
-            		UpperBound::Smallest
-		        )?;
-		        // Computation
-		        let result = hetero.mc_approx_mean(1000, 1e-4);
-		        // Collecting
-	            data.extend(&[population_size as f64, mutation_rate, *beta, selection, result.mean(), result.error()]);
-        	}
+            println!("{:?}", chrono::offset::Local::now());
+            for beta in &betas {
+                // Random variable
+                let hetero = UnfixedHeterozygosity::new(
+                    population_size,
+                    mutation_rate,
+                    Selection::Fixed(selection),
+                    Dominance::Sigmoid { rate: *beta },
+                    UpperBound::Smallest,
+                )?;
+                // Computation
+                let result = hetero.mc_approx_mean(1000, 1e-4);
+                // Collecting
+                data.extend(&[
+                    population_size as f64,
+                    mutation_rate,
+                    *beta,
+                    selection,
+                    result.mean(),
+                    result.error(),
+                ]);
+            }
         }
         // Save
         // pre::clean().unwrap();
-        pre::Data::new(data, 6)
-            .save_with_id("expected_polymorphisms_unfixed_allele_frequency")?;
+        pre::Data::new(data, 6).save_with_id("expected_polymorphisms_unfixed_allele_frequency")?;
     }
 
     Ok(())

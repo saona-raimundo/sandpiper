@@ -40,5 +40,30 @@
       
       alpha = {0., -2., -4.}
     
-  - [ ] mu = -0.0195556029, sigma = 0.0132709376, alpha = 0, beta = 0, mutation rate 0.0000012 and population size 5000
+  - [x] mu = -0.0195556029, sigma = 0.0132709376, alpha = 0, beta = 0, mutation rate 0.0000012 and population size 5000
+  
+
+
+
+- [x]  heterozygosity you obtain for the following parameters with 1-1/2N
+  - Popsize = 5000
+  - Mutation = 1.2x10-6
+  - mu= -0.13458588
+  - sigma=0.0377358
+  - alpha=0
+  - Beta = 3000
+- [x] Allele frequency distribution
+  - Ne = 500000
+  - U = 1.2e-8
+  - alpha = 0, 
+  - beta = 3000, 
+  - mu = {-10^-2, -10^-3, -10^-4}, 
+  - sigma = {10^-4, 10^-3, 10^-2}
+- [x] Allele frequency distribution
+  - Ne = 5000,
+  - U = 1.2e-6
+  - alpha = 0, 
+  - beta = 30, 
+  - mu = {-1, -0.1, -0.01}, 
+  - sigma = {0.01, 0.1, 1}.
 

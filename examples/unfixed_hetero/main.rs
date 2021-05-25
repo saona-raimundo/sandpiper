@@ -44,11 +44,11 @@ fn main() -> anyhow::Result<()> {
 
     // Fixed parameter computation of expected polymorphisms
     // Printing
-    if true {
+    if false {
         // Parameters
-        let population_size = 500;
-        let mutation_rate = 12e-6;
-        let selection = 0.0;
+        let population_size = 5000;
+        let mutation_rate = 1.2e-6;
+        let selection = -0.0;
         let beta = 3_000.0;
         // Random variable
         let hetero = UnfixedHeterozygosity::new(
@@ -103,6 +103,38 @@ fn main() -> anyhow::Result<()> {
         // Save
         // pre::clean().unwrap();
         pre::Data::new(data, 6).save_with_id("expected_polymorphisms_unfixed_allele_frequency")?;
+    }
+
+    // Fixed parameter, random selection, computation of expected polymorphisms
+    // Printing
+    if true {
+        // Parameters
+        let population_size = 5000;
+        let mutation_rate = 1.2e-6;
+        let location = -0.13458588;
+        let scale = 0.0377358;
+        let shape = 0.0;
+        let beta = 3_000.0;
+        let upper_bound = UpperBound::Midpoint;
+        // Random variable
+        let hetero = UnfixedHeterozygosity::new(
+            population_size,
+            mutation_rate,
+            Selection::SkewNormal {
+                location,
+                scale,
+                shape,
+                bounds: Some((-1., 1.)),
+            },
+            Dominance::Sigmoid { rate: beta },
+            upper_bound,
+        )?;
+        // Computation
+        let result = hetero.mc_approx_mean(1000, 1e-6);
+        // Reporting
+        println!("{:?}", hetero);
+        println!("expected Heterozygosity");
+        println!("{} \n{}", result.mean(), result.error());
     }
 
     Ok(())

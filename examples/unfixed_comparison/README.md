@@ -1,4 +1,4 @@
 # README
 
-Comparison of various modes of `UnfixedHeterozygosity` with `Heterozygosity`.
+Comparison of expected polymorphisms for various modes of `UnfixedHeterozygosity` with `Heterozygosity`.
 

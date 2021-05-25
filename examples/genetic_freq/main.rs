@@ -30,13 +30,13 @@ fn main() -> Result<()> {
 
     // Fixed parameter genetic frequency
     // Plotting and saving histogram
-    if true {
+    if false {
         // Parameters
         let population = 5_000;
         let mutation_rate = 1.2e-6;
         let selection = 0.000_1;
-        let beta: f64 = 0.; //3_000.;
-                            // Random variable
+        let beta: f64 = 3_000.;
+        // Random variable
         let dominance = 1. / (1. + (-beta * selection).exp());
         let gen_freq = GeneticFreq::new(population, mutation_rate, selection, dominance)?;
         // Simulation
@@ -115,6 +115,45 @@ fn main() -> Result<()> {
                 .set_title(&title)
                 .save_with_id(&title)
                 .unwrap();
+        }
+    }
+
+    // Fixed parameter random selection genetic frequency
+    // Reporting histogram
+    if false {
+        // Parameters
+        let population = 500000;
+        let mutation_rate = 1.2e-8;
+        let location = -1e-2;
+        let scale = 1e-2;
+        let shape = 0.0;
+        let rate = 3_000.;
+        // Computation
+        fixed_param_random_selection(population, mutation_rate, location, scale, shape, rate)?;
+    }
+
+    // Grid parameter random selection genetic frequency
+    // Reporting histogram
+    if true {
+        // Parameters
+        let population = 5000;
+        let mutation_rate = 1.2e-6;
+        let locations = [-1e-0, -1e-1, -1e-2];
+        let scales = [1e-2, 1e-1, 1e-0];
+        let shape = 0.0;
+        let rate = 30.;
+        // Computation
+        for location in &locations {
+            for scale in &scales {
+                fixed_param_random_selection(
+                    population,
+                    mutation_rate,
+                    *location,
+                    *scale,
+                    shape,
+                    rate,
+                )?;
+            }
         }
     }
 
@@ -280,6 +319,88 @@ fn main() -> Result<()> {
             .plot("unfixed_genetic_frequencies")
             .unwrap();
     }
+
+    Ok(())
+}
+
+fn fixed_param_random_selection(
+    population: u64,
+    mutation_rate: f64,
+    location: f64,
+    scale: f64,
+    shape: f64,
+    rate: f64,
+) -> anyhow::Result<()> {
+    // Random variable
+    #[derive(Debug)]
+    struct GF(Heterozygosity);
+    impl Distribution<f64> for GF {
+        fn sample<R: rand::Rng + ?Sized>(&self, rng: &mut R) -> f64 {
+            self.0.sample_frequency(rng)
+        }
+    }
+    let gf = GF(Heterozygosity::new(
+        population,
+        mutation_rate,
+        Selection::SkewNormal {
+            location,
+            scale,
+            shape,
+            bounds: Some((-1., 1.)),
+        },
+        Dominance::Sigmoid { rate },
+    )?);
+
+    // Reporting
+    // Histogram
+    let grid = {
+        let mut vec = vec![0.];
+        let base = 1. / (population as f64);
+        vec.extend_from_slice(&[base / 100., base / 10., base / 4., base / 2.]);
+        let mut next = base;
+        while next < 0.5 {
+            vec.push(next);
+            next *= 2.;
+        }
+        let mut mirror = vec.clone();
+        mirror.reverse();
+        vec.push(0.5);
+        for value in mirror {
+            vec.push(1. - value);
+        }
+        vec
+    };
+    println!("{:#?}", grid);
+    // Computations
+    let init_samples = 1_000_000;
+    let repetitions = 100;
+    let error = 1e-3;
+    let histo = sandpiper::distribution::helper::par_approx_histogram(
+        gf,
+        grid.clone(),
+        init_samples,
+        repetitions,
+        error,
+    )
+    .unwrap();
+    // Reporting
+    let mut data = vec![];
+    for i in 0..grid.len() {
+        data.push(grid[i]);
+        data.push(
+            histo.total_below(quantiles::histogram::Bound::Finite(grid[i])) as f64
+                / histo.count() as f64,
+        );
+    }
+    let title = format!(
+        "density frequency, mu = {}, sigma = {}, alpha = {}, beta = {}, N = {}, U = {}",
+        location, scale, shape, rate, population, mutation_rate
+    );
+    println!("{:?}", title);
+    println!("{:#?}", data);
+    pre::Data::new(data, 2)
+        .set_title(&title)
+        .save_with_id(&title)?;
 
     Ok(())
 }

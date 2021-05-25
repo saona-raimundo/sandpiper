@@ -58,7 +58,60 @@ pub fn collective_main() {
     }
 
     // Computing sandpiper
-    if true {
+    if false {
+        let (start, end) = (1, usize::MAX); // Sub-sample
+        let mut counter = 0;
+        let progress_bar = my_progress_bar(end.min(TOTAL) + 1 - start);
+        let mut data: Vec<f64> = Vec::with_capacity(end.min(TOTAL) + 1 - start);
+        for location in &MUS {
+            for scale in &SIGMAS {
+                for shape in &ALPHAS {
+                    for rate in &BETAS {
+                        counter += 1;
+                        if start <= counter && counter <= end {
+                            let result: Variance = approximate_conditional_expectation_sandpiper(
+                                LOWER_S,
+                                UPPER_S,
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                VARIANCE_SAMPLES,
+                                ERROR_LIMIT,
+                            );
+                            // Save
+                            data.extend(&[
+                                *location,
+                                *scale,
+                                *shape,
+                                *rate,
+                                result.mean(),
+                                result.error(),
+                            ]);
+                            progress_bar.inc(1);
+                        }
+                    }
+                }
+            }
+        }
+        pre::Data::new(data, 6)
+            .set_title("Computed values of expected polymorphisms. Sandpiper")
+            .save_with_id("sandpiper_all")
+            .unwrap();
+    }
+
+    // Ownly defined
+    if false {
+        // Parameters
+        let population_size = 5000;
+        let mutation_rate = 1e-6;
+        let mus = vec![0.];
+        let sigmas = vec![1.];
+        let alphas = vec![0.];
+        let betas = vec![0.];
+
+        //Computation
+        let total = mus.len() * sigmas.len() * alphas.len() * betas.len();
         let (start, end) = (1, usize::MAX); // Sub-sample
         let mut counter = 0;
         let progress_bar = my_progress_bar(end.min(TOTAL) + 1 - start);

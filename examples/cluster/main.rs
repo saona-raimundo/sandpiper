@@ -83,6 +83,7 @@ mod constants {
 }
 
 fn main() -> anyhow::Result<()> {
+    println!("Started!");
     let redneck_bool = true;
     let sandpiper_bool = true;
 

@@ -1,0 +1,38 @@
+cpu_bind=MASK - bigterra152, task  0  0 [389008]: mask 0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 1.99s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 7500 to 8499
+7500 of 1000. Done in 0 hours. ETA: 0 hours
+
+7501 of 1000. Done in 1 hours. ETA: 70 hours
+
+7502 of 1000. Done in 6 hours. ETA: 427 hours
+
+7503 of 1000. Done in 14 hours. ETA: 968 hours
+
+7504 of 1000. Done in 22 hours. ETA: 1627 hours
+
+7505 of 1000. Done in 30 hours. ETA: 2193 hours
+
+7506 of 1000. Done in 30 hours. ETA: 2664 hours
+
+7507 of 1000. Done in 30 hours. ETA: 2901 hours
+

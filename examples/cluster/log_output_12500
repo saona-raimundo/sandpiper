@@ -1,0 +1,65 @@
+cpu_bind=MASK - bigterra152, task  0  0 [301081]: mask 0xc00000000000000000000000000000000000000000000000000000000000000000000000000 set
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 0.12s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 12500 to 13499
+12500 of 1000. Done in 4 hours. ETA: 0 hours
+
+12501 of 1000. Done in 5 hours. ETA: 4933 hours
+
+12502 of 1000. Done in 5 hours. ETA: 3755 hours
+
+12503 of 1000. Done in 6 hours. ETA: 3115 hours
+
+12504 of 1000. Done in 6 hours. ETA: 2726 hours
+
+12505 of 1000. Done in 8 hours. ETA: 2456 hours
+
+12506 of 1000. Done in 8 hours. ETA: 2277 hours
+
+12507 of 1000. Done in 8 hours. ETA: 2122 hours
+
+12508 of 1000. Done in 9 hours. ETA: 1990 hours
+
+12509 of 1000. Done in 9 hours. ETA: 1878 hours
+
+12510 of 1000. Done in 9 hours. ETA: 1783 hours
+
+12511 of 1000. Done in 10 hours. ETA: 1699 hours
+
+12512 of 1000. Done in 13 hours. ETA: 1631 hours
+
+12513 of 1000. Done in 18 hours. ETA: 1583 hours
+
+12514 of 1000. Done in 23 hours. ETA: 1562 hours
+
+12515 of 1000. Done in 28 hours. ETA: 1558 hours
+
+12516 of 1000. Done in 28 hours. ETA: 1349 hours
+
+12517 of 1000. Done in 28 hours. ETA: 1341 hours
+
+12518 of 1000. Done in 29 hours. ETA: 1276 hours
+
+12519 of 1000. Done in 30 hours. ETA: 1256 hours
+
+12520 of 1000. Done in 30 hours. ETA: 1250 hours
+
+12521 of 1000. Done in 31 hours. ETA: 1254 hours
+

@@ -1,0 +1,142 @@
+cpu_bind=MASK - bigterra152, task  0  0 [162468]: mask 0x3000000000000000000000000000000000000000000000000000000000000000 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 3.53s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 6500 to 7499
+job number 6500, of run of 1000. Done in 0 hours. ETA: 0 hours
+
+job number 6501, of run of 1000. Done in 0 hours. ETA: 120 hours
+
+job number 6502, of run of 1000. Done in 0 hours. ETA: 90 hours
+
+job number 6503, of run of 1000. Done in 0 hours. ETA: 73 hours
+
+job number 6504, of run of 1000. Done in 0 hours. ETA: 63 hours
+
+job number 6505, of run of 1000. Done in 0 hours. ETA: 55 hours
+
+job number 6506, of run of 1000. Done in 0 hours. ETA: 50 hours
+
+job number 6507, of run of 1000. Done in 0 hours. ETA: 46 hours
+
+job number 6508, of run of 1000. Done in 0 hours. ETA: 42 hours
+
+job number 6509, of run of 1000. Done in 0 hours. ETA: 39 hours
+
+job number 6510, of run of 1000. Done in 0 hours. ETA: 37 hours
+
+job number 6511, of run of 1000. Done in 0 hours. ETA: 35 hours
+
+job number 6512, of run of 1000. Done in 0 hours. ETA: 35 hours
+
+job number 6513, of run of 1000. Done in 1 hours. ETA: 37 hours
+
+job number 6514, of run of 1000. Done in 1 hours. ETA: 40 hours
+
+job number 6515, of run of 1000. Done in 2 hours. ETA: 44 hours
+
+job number 6516, of run of 1000. Done in 2 hours. ETA: 45 hours
+
+job number 6517, of run of 1000. Done in 2 hours. ETA: 45 hours
+
+job number 6518, of run of 1000. Done in 2 hours. ETA: 48 hours
+
+job number 6519, of run of 1000. Done in 2 hours. ETA: 53 hours
+
+job number 6520, of run of 1000. Done in 2 hours. ETA: 58 hours
+
+job number 6521, of run of 1000. Done in 2 hours. ETA: 64 hours
+
+job number 6522, of run of 1000. Done in 2 hours. ETA: 68 hours
+
+job number 6523, of run of 1000. Done in 2 hours. ETA: 73 hours
+
+job number 6524, of run of 1000. Done in 2 hours. ETA: 78 hours
+
+job number 6525, of run of 1000. Done in 2 hours. ETA: 83 hours
+
+job number 6526, of run of 1000. Done in 2 hours. ETA: 87 hours
+
+job number 6527, of run of 1000. Done in 3 hours. ETA: 93 hours
+
+job number 6528, of run of 1000. Done in 4 hours. ETA: 98 hours
+
+job number 6529, of run of 1000. Done in 5 hours. ETA: 104 hours
+
+job number 6530, of run of 1000. Done in 7 hours. ETA: 112 hours
+
+job number 6531, of run of 1000. Done in 7 hours. ETA: 121 hours
+
+job number 6532, of run of 1000. Done in 7 hours. ETA: 128 hours
+
+job number 6533, of run of 1000. Done in 7 hours. ETA: 127 hours
+
+job number 6534, of run of 1000. Done in 7 hours. ETA: 134 hours
+
+job number 6535, of run of 1000. Done in 7 hours. ETA: 140 hours
+
+job number 6536, of run of 1000. Done in 7 hours. ETA: 147 hours
+
+job number 6537, of run of 1000. Done in 7 hours. ETA: 153 hours
+
+job number 6538, of run of 1000. Done in 7 hours. ETA: 160 hours
+
+job number 6539, of run of 1000. Done in 7 hours. ETA: 166 hours
+
+job number 6540, of run of 1000. Done in 7 hours. ETA: 173 hours
+
+job number 6541, of run of 1000. Done in 8 hours. ETA: 179 hours
+
+job number 6542, of run of 1000. Done in 10 hours. ETA: 186 hours
+
+job number 6543, of run of 1000. Done in 12 hours. ETA: 195 hours
+
+job number 6544, of run of 1000. Done in 15 hours. ETA: 204 hours
+
+job number 6545, of run of 1000. Done in 18 hours. ETA: 216 hours
+
+job number 6546, of run of 1000. Done in 18 hours. ETA: 228 hours
+
+job number 6547, of run of 1000. Done in 18 hours. ETA: 237 hours
+
+job number 6548, of run of 1000. Done in 18 hours. ETA: 246 hours
+
+job number 6549, of run of 1000. Done in 18 hours. ETA: 245 hours
+
+job number 6550, of run of 1000. Done in 18 hours. ETA: 254 hours
+
+job number 6551, of run of 1000. Done in 18 hours. ETA: 262 hours
+
+job number 6552, of run of 1000. Done in 18 hours. ETA: 270 hours
+
+job number 6553, of run of 1000. Done in 18 hours. ETA: 278 hours
+
+job number 6554, of run of 1000. Done in 18 hours. ETA: 287 hours
+
+job number 6555, of run of 1000. Done in 18 hours. ETA: 295 hours
+
+job number 6556, of run of 1000. Done in 19 hours. ETA: 303 hours
+
+job number 6557, of run of 1000. Done in 21 hours. ETA: 312 hours
+
+job number 6558, of run of 1000. Done in 26 hours. ETA: 322 hours
+
+job number 6559, of run of 1000. Done in 30 hours. ETA: 334 hours
+

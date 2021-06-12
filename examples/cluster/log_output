@@ -1,0 +1,26 @@
+cpu_bind=MASK - bea82, task  0  0 [5499]: mask 0x1 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 2.07s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 2500 to 2501
+2500 of 2. Done in 0 hours. ETA: 0 hours
+
+2501 of 2. Done in 0 hours. ETA: 0 hours
+

@@ -1,0 +1,102 @@
+cpu_bind=MASK - bigterra152, task  0  0 [297430]: mask 0x300000000000000000000000000000000000000000000000000000000000000000000000000000000000 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 2.07s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 8500 to 9499
+8500 of 1000. Done in 0 hours. ETA: 0 hours
+
+8501 of 1000. Done in 0 hours. ETA: 725 hours
+
+8502 of 1000. Done in 0 hours. ETA: 560 hours
+
+8503 of 1000. Done in 1 hours. ETA: 472 hours
+
+8504 of 1000. Done in 1 hours. ETA: 421 hours
+
+8505 of 1000. Done in 1 hours. ETA: 387 hours
+
+8506 of 1000. Done in 2 hours. ETA: 362 hours
+
+8507 of 1000. Done in 3 hours. ETA: 353 hours
+
+8508 of 1000. Done in 6 hours. ETA: 363 hours
+
+8509 of 1000. Done in 8 hours. ETA: 398 hours
+
+8510 of 1000. Done in 11 hours. ETA: 446 hours
+
+8511 of 1000. Done in 11 hours. ETA: 499 hours
+
+8512 of 1000. Done in 12 hours. ETA: 537 hours
+
+8513 of 1000. Done in 12 hours. ETA: 565 hours
+
+8514 of 1000. Done in 13 hours. ETA: 587 hours
+
+8515 of 1000. Done in 13 hours. ETA: 604 hours
+
+8516 of 1000. Done in 13 hours. ETA: 613 hours
+
+8517 of 1000. Done in 14 hours. ETA: 609 hours
+
+8518 of 1000. Done in 14 hours. ETA: 634 hours
+
+8519 of 1000. Done in 14 hours. ETA: 662 hours
+
+8520 of 1000. Done in 14 hours. ETA: 691 hours
+
+8521 of 1000. Done in 14 hours. ETA: 719 hours
+
+8522 of 1000. Done in 16 hours. ETA: 747 hours
+
+8523 of 1000. Done in 18 hours. ETA: 773 hours
+
+8524 of 1000. Done in 21 hours. ETA: 795 hours
+
+8525 of 1000. Done in 24 hours. ETA: 805 hours
+
+8526 of 1000. Done in 24 hours. ETA: 807 hours
+
+8527 of 1000. Done in 24 hours. ETA: 797 hours
+
+8528 of 1000. Done in 24 hours. ETA: 790 hours
+
+8529 of 1000. Done in 25 hours. ETA: 785 hours
+
+8530 of 1000. Done in 25 hours. ETA: 781 hours
+
+8531 of 1000. Done in 25 hours. ETA: 777 hours
+
+8532 of 1000. Done in 25 hours. ETA: 775 hours
+
+8533 of 1000. Done in 25 hours. ETA: 773 hours
+
+8534 of 1000. Done in 26 hours. ETA: 771 hours
+
+8535 of 1000. Done in 26 hours. ETA: 771 hours
+
+8536 of 1000. Done in 26 hours. ETA: 770 hours
+
+8537 of 1000. Done in 28 hours. ETA: 771 hours
+
+8538 of 1000. Done in 29 hours. ETA: 774 hours
+
+8539 of 1000. Done in 30 hours. ETA: 777 hours
+

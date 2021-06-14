@@ -83,6 +83,7 @@ mod constants {
 }
 
 fn main() -> anyhow::Result<()> {
+    println!("Started!");
     let redneck_bool = true;
     let sandpiper_bool = true;
 
@@ -92,7 +93,10 @@ fn main() -> anyhow::Result<()> {
 }
 
 fn simulate(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
-    let (start, end) = (1, usize::MAX); // Sub-sample
+    let args: Vec<String> = std::env::args().collect();
+    let start: usize = args[1].parse().unwrap();
+    let end = start + 1000 - 1;
+    println!("Computing from {} to {}", start, end);
     let mut counter: usize = 0;
     let progress_bar = my_progress_bar(start, end);
     for location in &MUS {

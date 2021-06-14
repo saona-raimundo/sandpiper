@@ -9,10 +9,9 @@
 #
 #Define the number of hours the job should run. 
 #Maximum runtime is limited to 10 days, ie. 240 hours
-#SBATCH --time=48:00:00
 #
 #Define the amount of RAM used by your job in GigaBytes
-#SBATCH --mem=128G
+#SBATCH --mem=256G
 #
 #Send emails when a job starts, it is finished or it exits
 #SBATCH --mail-user=raimundojulian.saonaurmeneta@ist.ac.at
@@ -32,4 +31,4 @@ module load rust
 #
 #
 #run the respective binary through SLURM's srun
-srun --cpu_bind=verbose  cluster.exe
+srun --cpu_bind=verbose  cargo run --release --example cluster

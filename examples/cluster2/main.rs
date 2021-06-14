@@ -6,8 +6,8 @@ use sandpiper::prelude::*;
 use std::fs::File;
 use std::fs::OpenOptions;
 
-const START: usize = 10500;
-const END: usize = START + 1000 - 1;
+const START: usize = 1;
+const END: usize = usize::MAX;
 
 mod constants {
     // Model parameters
@@ -82,7 +82,7 @@ mod constants {
     // Simulation parameters
     pub const UPPER_GEN_FREQ: sandpiper::UpperBound = sandpiper::UpperBound::Smallest;
     pub const VARIANCE_SAMPLES: usize = 1_000;
-    pub const ERROR_LIMIT: f64 = 1e-6;
+    pub const ERROR_LIMIT: f64 = 1e-4;
 }
 
 fn main() -> anyhow::Result<()> {
@@ -91,7 +91,7 @@ fn main() -> anyhow::Result<()> {
     let sandpiper_bool = true;
 
     simulate(redneck_bool, sandpiper_bool)?;
-    // gather_records(redneck_bool, sandpiper_bool)?;
+    gather_records(redneck_bool, sandpiper_bool)?;
     Ok(())
 }
 

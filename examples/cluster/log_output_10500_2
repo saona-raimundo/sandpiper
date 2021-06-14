@@ -1,0 +1,58 @@
+cpu_bind=MASK - bigterra152, task  0  0 [156788]: mask 0xc00000000000000000000000 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 2.01s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 10500 to 11499
+job number 10500, of run of 1000. Done in 0 hours. ETA: 0 hours
+
+job number 10501, of run of 1000. Done in 2 hours. ETA: 23 hours
+
+job number 10502, of run of 1000. Done in 6 hours. ETA: 756 hours
+
+job number 10503, of run of 1000. Done in 8 hours. ETA: 1173 hours
+
+job number 10504, of run of 1000. Done in 14 hours. ETA: 1436 hours
+
+job number 10505, of run of 1000. Done in 19 hours. ETA: 1725 hours
+
+job number 10506, of run of 1000. Done in 19 hours. ETA: 1987 hours
+
+job number 10507, of run of 1000. Done in 20 hours. ETA: 2106 hours
+
+job number 10508, of run of 1000. Done in 20 hours. ETA: 2152 hours
+
+job number 10509, of run of 1000. Done in 20 hours. ETA: 2157 hours
+
+job number 10510, of run of 1000. Done in 20 hours. ETA: 2139 hours
+
+job number 10511, of run of 1000. Done in 20 hours. ETA: 2107 hours
+
+job number 10512, of run of 1000. Done in 20 hours. ETA: 2068 hours
+
+job number 10513, of run of 1000. Done in 20 hours. ETA: 2025 hours
+
+job number 10514, of run of 1000. Done in 20 hours. ETA: 1981 hours
+
+job number 10515, of run of 1000. Done in 20 hours. ETA: 1936 hours
+
+job number 10516, of run of 1000. Done in 24 hours. ETA: 2015 hours
+
+job number 10517, of run of 1000. Done in 28 hours. ETA: 2024 hours
+

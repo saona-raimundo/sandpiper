@@ -1,0 +1,663 @@
+cpu_bind=MASK - bigterra141, task  0  0 [107027]: mask 0x40000000000000004000000000000000 set
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 1.09s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 4500 to 5499
+4500 of 1000. Done in 0 hours. ETA: 0 hours
+
+4501 of 1000. Done in 0 hours. ETA: 94 hours
+
+4502 of 1000. Done in 0 hours. ETA: 71 hours
+
+4503 of 1000. Done in 0 hours. ETA: 57 hours
+
+4504 of 1000. Done in 0 hours. ETA: 49 hours
+
+4505 of 1000. Done in 0 hours. ETA: 44 hours
+
+4506 of 1000. Done in 0 hours. ETA: 39 hours
+
+4507 of 1000. Done in 0 hours. ETA: 36 hours
+
+4508 of 1000. Done in 0 hours. ETA: 33 hours
+
+4509 of 1000. Done in 0 hours. ETA: 31 hours
+
+4510 of 1000. Done in 0 hours. ETA: 29 hours
+
+4511 of 1000. Done in 0 hours. ETA: 27 hours
+
+4512 of 1000. Done in 0 hours. ETA: 26 hours
+
+4513 of 1000. Done in 0 hours. ETA: 25 hours
+
+4514 of 1000. Done in 0 hours. ETA: 24 hours
+
+4515 of 1000. Done in 0 hours. ETA: 23 hours
+
+4516 of 1000. Done in 0 hours. ETA: 17 hours
+
+4517 of 1000. Done in 0 hours. ETA: 17 hours
+
+4518 of 1000. Done in 0 hours. ETA: 15 hours
+
+4519 of 1000. Done in 0 hours. ETA: 13 hours
+
+4520 of 1000. Done in 0 hours. ETA: 12 hours
+
+4521 of 1000. Done in 0 hours. ETA: 11 hours
+
+4522 of 1000. Done in 0 hours. ETA: 10 hours
+
+4523 of 1000. Done in 0 hours. ETA: 10 hours
+
+4524 of 1000. Done in 0 hours. ETA: 9 hours
+
+4525 of 1000. Done in 0 hours. ETA: 9 hours
+
+4526 of 1000. Done in 0 hours. ETA: 8 hours
+
+4527 of 1000. Done in 0 hours. ETA: 8 hours
+
+4528 of 1000. Done in 0 hours. ETA: 8 hours
+
+4529 of 1000. Done in 0 hours. ETA: 7 hours
+
+4530 of 1000. Done in 0 hours. ETA: 7 hours
+
+4531 of 1000. Done in 0 hours. ETA: 7 hours
+
+4532 of 1000. Done in 0 hours. ETA: 7 hours
+
+4533 of 1000. Done in 0 hours. ETA: 7 hours
+
+4534 of 1000. Done in 0 hours. ETA: 7 hours
+
+4535 of 1000. Done in 0 hours. ETA: 6 hours
+
+4536 of 1000. Done in 0 hours. ETA: 6 hours
+
+4537 of 1000. Done in 0 hours. ETA: 6 hours
+
+4538 of 1000. Done in 0 hours. ETA: 6 hours
+
+4539 of 1000. Done in 0 hours. ETA: 6 hours
+
+4540 of 1000. Done in 0 hours. ETA: 6 hours
+
+4541 of 1000. Done in 0 hours. ETA: 6 hours
+
+4542 of 1000. Done in 0 hours. ETA: 6 hours
+
+4543 of 1000. Done in 0 hours. ETA: 5 hours
+
+4544 of 1000. Done in 0 hours. ETA: 5 hours
+
+4545 of 1000. Done in 0 hours. ETA: 5 hours
+
+4546 of 1000. Done in 0 hours. ETA: 5 hours
+
+4547 of 1000. Done in 0 hours. ETA: 5 hours
+
+4548 of 1000. Done in 0 hours. ETA: 5 hours
+
+4549 of 1000. Done in 0 hours. ETA: 5 hours
+
+4550 of 1000. Done in 0 hours. ETA: 5 hours
+
+4551 of 1000. Done in 0 hours. ETA: 5 hours
+
+4552 of 1000. Done in 0 hours. ETA: 5 hours
+
+4553 of 1000. Done in 0 hours. ETA: 5 hours
+
+4554 of 1000. Done in 0 hours. ETA: 5 hours
+
+4555 of 1000. Done in 0 hours. ETA: 5 hours
+
+4556 of 1000. Done in 0 hours. ETA: 5 hours
+
+4557 of 1000. Done in 0 hours. ETA: 5 hours
+
+4558 of 1000. Done in 0 hours. ETA: 5 hours
+
+4559 of 1000. Done in 0 hours. ETA: 5 hours
+
+4560 of 1000. Done in 0 hours. ETA: 5 hours
+
+4561 of 1000. Done in 0 hours. ETA: 5 hours
+
+4562 of 1000. Done in 0 hours. ETA: 4 hours
+
+4563 of 1000. Done in 0 hours. ETA: 4 hours
+
+4564 of 1000. Done in 0 hours. ETA: 4 hours
+
+4565 of 1000. Done in 0 hours. ETA: 4 hours
+
+4566 of 1000. Done in 0 hours. ETA: 4 hours
+
+4567 of 1000. Done in 0 hours. ETA: 4 hours
+
+4568 of 1000. Done in 0 hours. ETA: 4 hours
+
+4569 of 1000. Done in 0 hours. ETA: 4 hours
+
+4570 of 1000. Done in 0 hours. ETA: 4 hours
+
+4571 of 1000. Done in 0 hours. ETA: 4 hours
+
+4572 of 1000. Done in 0 hours. ETA: 4 hours
+
+4573 of 1000. Done in 0 hours. ETA: 4 hours
+
+4574 of 1000. Done in 0 hours. ETA: 4 hours
+
+4575 of 1000. Done in 0 hours. ETA: 4 hours
+
+4576 of 1000. Done in 0 hours. ETA: 4 hours
+
+4577 of 1000. Done in 0 hours. ETA: 4 hours
+
+4578 of 1000. Done in 0 hours. ETA: 4 hours
+
+4579 of 1000. Done in 0 hours. ETA: 4 hours
+
+4580 of 1000. Done in 0 hours. ETA: 4 hours
+
+4581 of 1000. Done in 0 hours. ETA: 4 hours
+
+4582 of 1000. Done in 0 hours. ETA: 4 hours
+
+4583 of 1000. Done in 0 hours. ETA: 4 hours
+
+4584 of 1000. Done in 0 hours. ETA: 4 hours
+
+4585 of 1000. Done in 0 hours. ETA: 4 hours
+
+4586 of 1000. Done in 0 hours. ETA: 4 hours
+
+4587 of 1000. Done in 0 hours. ETA: 4 hours
+
+4588 of 1000. Done in 0 hours. ETA: 4 hours
+
+4589 of 1000. Done in 0 hours. ETA: 4 hours
+
+4590 of 1000. Done in 0 hours. ETA: 4 hours
+
+4591 of 1000. Done in 0 hours. ETA: 4 hours
+
+4592 of 1000. Done in 0 hours. ETA: 4 hours
+
+4593 of 1000. Done in 0 hours. ETA: 4 hours
+
+4594 of 1000. Done in 0 hours. ETA: 4 hours
+
+4595 of 1000. Done in 0 hours. ETA: 4 hours
+
+4596 of 1000. Done in 0 hours. ETA: 4 hours
+
+4597 of 1000. Done in 0 hours. ETA: 4 hours
+
+4598 of 1000. Done in 0 hours. ETA: 4 hours
+
+4599 of 1000. Done in 0 hours. ETA: 4 hours
+
+4600 of 1000. Done in 0 hours. ETA: 4 hours
+
+4601 of 1000. Done in 0 hours. ETA: 4 hours
+
+4602 of 1000. Done in 0 hours. ETA: 4 hours
+
+4603 of 1000. Done in 0 hours. ETA: 4 hours
+
+4604 of 1000. Done in 0 hours. ETA: 4 hours
+
+4605 of 1000. Done in 0 hours. ETA: 4 hours
+
+4606 of 1000. Done in 0 hours. ETA: 4 hours
+
+4607 of 1000. Done in 0 hours. ETA: 4 hours
+
+4608 of 1000. Done in 0 hours. ETA: 4 hours
+
+4609 of 1000. Done in 0 hours. ETA: 4 hours
+
+4610 of 1000. Done in 0 hours. ETA: 3 hours
+
+4611 of 1000. Done in 0 hours. ETA: 3 hours
+
+4612 of 1000. Done in 0 hours. ETA: 3 hours
+
+4613 of 1000. Done in 0 hours. ETA: 3 hours
+
+4614 of 1000. Done in 0 hours. ETA: 3 hours
+
+4615 of 1000. Done in 0 hours. ETA: 3 hours
+
+4616 of 1000. Done in 0 hours. ETA: 3 hours
+
+4617 of 1000. Done in 0 hours. ETA: 3 hours
+
+4618 of 1000. Done in 0 hours. ETA: 3 hours
+
+4619 of 1000. Done in 0 hours. ETA: 3 hours
+
+4620 of 1000. Done in 0 hours. ETA: 3 hours
+
+4621 of 1000. Done in 0 hours. ETA: 3 hours
+
+4622 of 1000. Done in 0 hours. ETA: 3 hours
+
+4623 of 1000. Done in 0 hours. ETA: 3 hours
+
+4624 of 1000. Done in 0 hours. ETA: 3 hours
+
+4625 of 1000. Done in 0 hours. ETA: 3 hours
+
+4626 of 1000. Done in 0 hours. ETA: 3 hours
+
+4627 of 1000. Done in 0 hours. ETA: 3 hours
+
+4628 of 1000. Done in 0 hours. ETA: 3 hours
+
+4629 of 1000. Done in 0 hours. ETA: 3 hours
+
+4630 of 1000. Done in 0 hours. ETA: 3 hours
+
+4631 of 1000. Done in 0 hours. ETA: 3 hours
+
+4632 of 1000. Done in 0 hours. ETA: 3 hours
+
+4633 of 1000. Done in 0 hours. ETA: 3 hours
+
+4634 of 1000. Done in 0 hours. ETA: 3 hours
+
+4635 of 1000. Done in 0 hours. ETA: 3 hours
+
+4636 of 1000. Done in 0 hours. ETA: 3 hours
+
+4637 of 1000. Done in 0 hours. ETA: 3 hours
+
+4638 of 1000. Done in 0 hours. ETA: 3 hours
+
+4639 of 1000. Done in 0 hours. ETA: 3 hours
+
+4640 of 1000. Done in 0 hours. ETA: 3 hours
+
+4641 of 1000. Done in 0 hours. ETA: 3 hours
+
+4642 of 1000. Done in 0 hours. ETA: 3 hours
+
+4643 of 1000. Done in 0 hours. ETA: 3 hours
+
+4644 of 1000. Done in 0 hours. ETA: 3 hours
+
+4645 of 1000. Done in 0 hours. ETA: 3 hours
+
+4646 of 1000. Done in 0 hours. ETA: 3 hours
+
+4647 of 1000. Done in 0 hours. ETA: 3 hours
+
+4648 of 1000. Done in 0 hours. ETA: 3 hours
+
+4649 of 1000. Done in 0 hours. ETA: 3 hours
+
+4650 of 1000. Done in 0 hours. ETA: 3 hours
+
+4651 of 1000. Done in 0 hours. ETA: 3 hours
+
+4652 of 1000. Done in 0 hours. ETA: 3 hours
+
+4653 of 1000. Done in 0 hours. ETA: 3 hours
+
+4654 of 1000. Done in 0 hours. ETA: 3 hours
+
+4655 of 1000. Done in 0 hours. ETA: 3 hours
+
+4656 of 1000. Done in 0 hours. ETA: 3 hours
+
+4657 of 1000. Done in 0 hours. ETA: 3 hours
+
+4658 of 1000. Done in 0 hours. ETA: 3 hours
+
+4659 of 1000. Done in 0 hours. ETA: 3 hours
+
+4660 of 1000. Done in 0 hours. ETA: 3 hours
+
+4661 of 1000. Done in 0 hours. ETA: 3 hours
+
+4662 of 1000. Done in 0 hours. ETA: 3 hours
+
+4663 of 1000. Done in 0 hours. ETA: 3 hours
+
+4664 of 1000. Done in 0 hours. ETA: 3 hours
+
+4665 of 1000. Done in 0 hours. ETA: 3 hours
+
+4666 of 1000. Done in 0 hours. ETA: 3 hours
+
+4667 of 1000. Done in 0 hours. ETA: 3 hours
+
+4668 of 1000. Done in 0 hours. ETA: 3 hours
+
+4669 of 1000. Done in 0 hours. ETA: 3 hours
+
+4670 of 1000. Done in 0 hours. ETA: 3 hours
+
+4671 of 1000. Done in 0 hours. ETA: 3 hours
+
+4672 of 1000. Done in 0 hours. ETA: 3 hours
+
+4673 of 1000. Done in 0 hours. ETA: 3 hours
+
+4674 of 1000. Done in 0 hours. ETA: 3 hours
+
+4675 of 1000. Done in 0 hours. ETA: 3 hours
+
+4676 of 1000. Done in 0 hours. ETA: 3 hours
+
+4677 of 1000. Done in 0 hours. ETA: 3 hours
+
+4678 of 1000. Done in 0 hours. ETA: 3 hours
+
+4679 of 1000. Done in 0 hours. ETA: 3 hours
+
+4680 of 1000. Done in 0 hours. ETA: 3 hours
+
+4681 of 1000. Done in 0 hours. ETA: 3 hours
+
+4682 of 1000. Done in 0 hours. ETA: 3 hours
+
+4683 of 1000. Done in 0 hours. ETA: 3 hours
+
+4684 of 1000. Done in 0 hours. ETA: 3 hours
+
+4685 of 1000. Done in 0 hours. ETA: 3 hours
+
+4686 of 1000. Done in 0 hours. ETA: 3 hours
+
+4687 of 1000. Done in 0 hours. ETA: 3 hours
+
+4688 of 1000. Done in 0 hours. ETA: 3 hours
+
+4689 of 1000. Done in 0 hours. ETA: 3 hours
+
+4690 of 1000. Done in 0 hours. ETA: 3 hours
+
+4691 of 1000. Done in 0 hours. ETA: 3 hours
+
+4692 of 1000. Done in 0 hours. ETA: 3 hours
+
+4693 of 1000. Done in 0 hours. ETA: 3 hours
+
+4694 of 1000. Done in 0 hours. ETA: 3 hours
+
+4695 of 1000. Done in 0 hours. ETA: 3 hours
+
+4696 of 1000. Done in 0 hours. ETA: 3 hours
+
+4697 of 1000. Done in 0 hours. ETA: 3 hours
+
+4698 of 1000. Done in 0 hours. ETA: 3 hours
+
+4699 of 1000. Done in 0 hours. ETA: 3 hours
+
+4700 of 1000. Done in 0 hours. ETA: 3 hours
+
+4701 of 1000. Done in 0 hours. ETA: 3 hours
+
+4702 of 1000. Done in 0 hours. ETA: 3 hours
+
+4703 of 1000. Done in 0 hours. ETA: 3 hours
+
+4704 of 1000. Done in 0 hours. ETA: 3 hours
+
+4705 of 1000. Done in 0 hours. ETA: 3 hours
+
+4706 of 1000. Done in 0 hours. ETA: 3 hours
+
+4707 of 1000. Done in 0 hours. ETA: 3 hours
+
+4708 of 1000. Done in 0 hours. ETA: 3 hours
+
+4709 of 1000. Done in 0 hours. ETA: 3 hours
+
+4710 of 1000. Done in 0 hours. ETA: 3 hours
+
+4711 of 1000. Done in 0 hours. ETA: 3 hours
+
+4712 of 1000. Done in 0 hours. ETA: 3 hours
+
+4713 of 1000. Done in 0 hours. ETA: 3 hours
+
+4714 of 1000. Done in 0 hours. ETA: 3 hours
+
+4715 of 1000. Done in 0 hours. ETA: 3 hours
+
+4716 of 1000. Done in 0 hours. ETA: 3 hours
+
+4717 of 1000. Done in 0 hours. ETA: 3 hours
+
+4718 of 1000. Done in 0 hours. ETA: 3 hours
+
+4719 of 1000. Done in 0 hours. ETA: 3 hours
+
+4720 of 1000. Done in 0 hours. ETA: 3 hours
+
+4721 of 1000. Done in 0 hours. ETA: 3 hours
+
+4722 of 1000. Done in 0 hours. ETA: 3 hours
+
+4723 of 1000. Done in 0 hours. ETA: 3 hours
+
+4724 of 1000. Done in 0 hours. ETA: 3 hours
+
+4725 of 1000. Done in 0 hours. ETA: 3 hours
+
+4726 of 1000. Done in 0 hours. ETA: 3 hours
+
+4727 of 1000. Done in 0 hours. ETA: 3 hours
+
+4728 of 1000. Done in 0 hours. ETA: 3 hours
+
+4729 of 1000. Done in 0 hours. ETA: 3 hours
+
+4730 of 1000. Done in 0 hours. ETA: 3 hours
+
+4731 of 1000. Done in 0 hours. ETA: 3 hours
+
+4732 of 1000. Done in 0 hours. ETA: 3 hours
+
+4733 of 1000. Done in 0 hours. ETA: 3 hours
+
+4734 of 1000. Done in 0 hours. ETA: 3 hours
+
+4735 of 1000. Done in 0 hours. ETA: 3 hours
+
+4736 of 1000. Done in 0 hours. ETA: 3 hours
+
+4737 of 1000. Done in 0 hours. ETA: 3 hours
+
+4738 of 1000. Done in 0 hours. ETA: 3 hours
+
+4739 of 1000. Done in 0 hours. ETA: 3 hours
+
+4740 of 1000. Done in 0 hours. ETA: 3 hours
+
+4741 of 1000. Done in 0 hours. ETA: 3 hours
+
+4742 of 1000. Done in 0 hours. ETA: 3 hours
+
+4743 of 1000. Done in 1 hours. ETA: 3 hours
+
+4744 of 1000. Done in 1 hours. ETA: 3 hours
+
+4745 of 1000. Done in 1 hours. ETA: 3 hours
+
+4746 of 1000. Done in 1 hours. ETA: 3 hours
+
+4747 of 1000. Done in 1 hours. ETA: 3 hours
+
+4748 of 1000. Done in 1 hours. ETA: 3 hours
+
+4749 of 1000. Done in 1 hours. ETA: 3 hours
+
+4750 of 1000. Done in 1 hours. ETA: 3 hours
+
+4751 of 1000. Done in 1 hours. ETA: 3 hours
+
+4752 of 1000. Done in 1 hours. ETA: 3 hours
+
+4753 of 1000. Done in 1 hours. ETA: 3 hours
+
+4754 of 1000. Done in 1 hours. ETA: 3 hours
+
+4755 of 1000. Done in 1 hours. ETA: 3 hours
+
+4756 of 1000. Done in 1 hours. ETA: 3 hours
+
+4757 of 1000. Done in 1 hours. ETA: 3 hours
+
+4758 of 1000. Done in 1 hours. ETA: 3 hours
+
+4759 of 1000. Done in 1 hours. ETA: 3 hours
+
+4760 of 1000. Done in 1 hours. ETA: 3 hours
+
+4761 of 1000. Done in 1 hours. ETA: 3 hours
+
+4762 of 1000. Done in 1 hours. ETA: 3 hours
+
+4763 of 1000. Done in 1 hours. ETA: 3 hours
+
+4764 of 1000. Done in 1 hours. ETA: 3 hours
+
+4765 of 1000. Done in 1 hours. ETA: 3 hours
+
+4766 of 1000. Done in 1 hours. ETA: 3 hours
+
+4767 of 1000. Done in 1 hours. ETA: 3 hours
+
+4768 of 1000. Done in 1 hours. ETA: 3 hours
+
+4769 of 1000. Done in 1 hours. ETA: 4 hours
+
+4770 of 1000. Done in 1 hours. ETA: 4 hours
+
+4771 of 1000. Done in 1 hours. ETA: 4 hours
+
+4772 of 1000. Done in 2 hours. ETA: 4 hours
+
+4773 of 1000. Done in 2 hours. ETA: 4 hours
+
+4774 of 1000. Done in 3 hours. ETA: 4 hours
+
+4775 of 1000. Done in 4 hours. ETA: 4 hours
+
+4776 of 1000. Done in 4 hours. ETA: 5 hours
+
+4777 of 1000. Done in 4 hours. ETA: 5 hours
+
+4778 of 1000. Done in 4 hours. ETA: 6 hours
+
+4779 of 1000. Done in 4 hours. ETA: 6 hours
+
+4780 of 1000. Done in 4 hours. ETA: 7 hours
+
+4781 of 1000. Done in 4 hours. ETA: 7 hours
+
+4782 of 1000. Done in 4 hours. ETA: 7 hours
+
+4783 of 1000. Done in 4 hours. ETA: 8 hours
+
+4784 of 1000. Done in 4 hours. ETA: 8 hours
+
+4785 of 1000. Done in 4 hours. ETA: 9 hours
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              4786 of 1000. Done in 4 hours. ETA: 9 hours
+
+4787 of 1000. Done in 5 hours. ETA: 10 hours
+
+                                                                   4788 of 1000. Done in 7 hours. ETA: 10 hours
+
+                                                                   4789 of 1000. Done in 9 hours. ETA: 10 hours
+
+4790 of 1000. Done in 10 hours. ETA: 11 hours
+
+4791 of 1000. Done in 10 hours. ETA: 13 hours
+
+4792 of 1000. Done in 10 hours. ETA: 14 hours
+
+4793 of 1000. Done in 10 hours. ETA: 15 hours
+
+4794 of 1000. Done in 10 hours. ETA: 16 hours
+
+4795 of 1000. Done in 10 hours. ETA: 17 hours
+
+4796 of 1000. Done in 10 hours. ETA: 18 hours
+
+4797 of 1000. Done in 10 hours. ETA: 19 hours
+
+4798 of 1000. Done in 10 hours. ETA: 20 hours
+
+4799 of 1000. Done in 10 hours. ETA: 21 hours
+
+4800 of 1000. Done in 10 hours. ETA: 21 hours
+
+                                                                    4801 of 1000. Done in 11 hours. ETA: 22 hours
+
+4802 of 1000. Done in 13 hours. ETA: 24 hours
+
+                                                                    4803 of 1000. Done in 15 hours. ETA: 25 hours
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     4804 of 1000. Done in 18 hours. ETA: 26 hours
+
+4805 of 1000. Done in 20 hours. ETA: 26 hours
+
+4806 of 1000. Done in 20 hours. ETA: 28 hours
+
+4807 of 1000. Done in 20 hours. ETA: 29 hours
+
+4808 of 1000. Done in 20 hours. ETA: 31 hours
+
+4809 of 1000. Done in 20 hours. ETA: 32 hours
+
+4810 of 1000. Done in 20 hours. ETA: 33 hours
+
+4811 of 1000. Done in 20 hours. ETA: 35 hours
+
+4812 of 1000. Done in 20 hours. ETA: 36 hours
+
+4813 of 1000. Done in 20 hours. ETA: 37 hours
+
+4814 of 1000. Done in 20 hours. ETA: 39 hours
+
+4815 of 1000. Done in 20 hours. ETA: 40 hours
+
+                                                                   4816 of 1000. Done in 22 hours. ETA: 41 hours
+
+4817 of 1000. Done in 23 hours. ETA: 43 hours
+
+                                                                   4818 of 1000. Done in 27 hours. ETA: 44 hours
+
+                                                                   4819 of 1000. Done in 30 hours. ETA: 46 hours
+
+job number 3530, of run of 1000. Done in 30 hours. ETA: 775 hours
+

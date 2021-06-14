@@ -1,0 +1,262 @@
+cpu_bind=MASK - bigterra152, task  0  0 [59861]: mask 0x300000000000000000000000000000000000000000000000000000000000000000000000 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 1.60s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 9500 to 10499
+9500 of 1000. Done in 0 hours. ETA: 0 hours
+
+9501 of 1000. Done in 0 hours. ETA: 20 hours
+
+9502 of 1000. Done in 0 hours. ETA: 17 hours
+
+9503 of 1000. Done in 0 hours. ETA: 16 hours
+
+9504 of 1000. Done in 0 hours. ETA: 15 hours
+
+9505 of 1000. Done in 0 hours. ETA: 15 hours
+
+9506 of 1000. Done in 0 hours. ETA: 15 hours
+
+9507 of 1000. Done in 0 hours. ETA: 15 hours
+
+9508 of 1000. Done in 0 hours. ETA: 15 hours
+
+9509 of 1000. Done in 0 hours. ETA: 15 hours
+
+9510 of 1000. Done in 0 hours. ETA: 14 hours
+
+9511 of 1000. Done in 0 hours. ETA: 14 hours
+
+9512 of 1000. Done in 0 hours. ETA: 14 hours
+
+9513 of 1000. Done in 0 hours. ETA: 14 hours
+
+9514 of 1000. Done in 0 hours. ETA: 14 hours
+
+9515 of 1000. Done in 0 hours. ETA: 14 hours
+
+9516 of 1000. Done in 0 hours. ETA: 14 hours
+
+9517 of 1000. Done in 0 hours. ETA: 14 hours
+
+9518 of 1000. Done in 0 hours. ETA: 14 hours
+
+9519 of 1000. Done in 0 hours. ETA: 14 hours
+
+9520 of 1000. Done in 0 hours. ETA: 14 hours
+
+9521 of 1000. Done in 0 hours. ETA: 14 hours
+
+9522 of 1000. Done in 0 hours. ETA: 14 hours
+
+9523 of 1000. Done in 0 hours. ETA: 14 hours
+
+9524 of 1000. Done in 0 hours. ETA: 14 hours
+
+9525 of 1000. Done in 0 hours. ETA: 14 hours
+
+9526 of 1000. Done in 0 hours. ETA: 15 hours
+
+9527 of 1000. Done in 0 hours. ETA: 15 hours
+
+9528 of 1000. Done in 0 hours. ETA: 15 hours
+
+9529 of 1000. Done in 0 hours. ETA: 15 hours
+
+9530 of 1000. Done in 0 hours. ETA: 15 hours
+
+9531 of 1000. Done in 0 hours. ETA: 15 hours
+
+9532 of 1000. Done in 0 hours. ETA: 15 hours
+
+9533 of 1000. Done in 0 hours. ETA: 15 hours
+
+9534 of 1000. Done in 0 hours. ETA: 15 hours
+
+9535 of 1000. Done in 0 hours. ETA: 15 hours
+
+9536 of 1000. Done in 0 hours. ETA: 15 hours
+
+9537 of 1000. Done in 0 hours. ETA: 15 hours
+
+9538 of 1000. Done in 0 hours. ETA: 15 hours
+
+9539 of 1000. Done in 0 hours. ETA: 15 hours
+
+9540 of 1000. Done in 0 hours. ETA: 15 hours
+
+9541 of 1000. Done in 0 hours. ETA: 15 hours
+
+9542 of 1000. Done in 0 hours. ETA: 15 hours
+
+9543 of 1000. Done in 0 hours. ETA: 16 hours
+
+9544 of 1000. Done in 0 hours. ETA: 16 hours
+
+9545 of 1000. Done in 0 hours. ETA: 16 hours
+
+9546 of 1000. Done in 0 hours. ETA: 16 hours
+
+9547 of 1000. Done in 0 hours. ETA: 16 hours
+
+9548 of 1000. Done in 0 hours. ETA: 16 hours
+
+9549 of 1000. Done in 0 hours. ETA: 16 hours
+
+9550 of 1000. Done in 0 hours. ETA: 16 hours
+
+9551 of 1000. Done in 0 hours. ETA: 16 hours
+
+9552 of 1000. Done in 0 hours. ETA: 16 hours
+
+9553 of 1000. Done in 0 hours. ETA: 16 hours
+
+9554 of 1000. Done in 0 hours. ETA: 16 hours
+
+9555 of 1000. Done in 0 hours. ETA: 16 hours
+
+9556 of 1000. Done in 1 hours. ETA: 16 hours
+
+9557 of 1000. Done in 1 hours. ETA: 16 hours
+
+9558 of 1000. Done in 1 hours. ETA: 17 hours
+
+9559 of 1000. Done in 1 hours. ETA: 17 hours
+
+9560 of 1000. Done in 1 hours. ETA: 17 hours
+
+9561 of 1000. Done in 1 hours. ETA: 18 hours
+
+9562 of 1000. Done in 1 hours. ETA: 18 hours
+
+9563 of 1000. Done in 1 hours. ETA: 18 hours
+
+9564 of 1000. Done in 1 hours. ETA: 19 hours
+
+9565 of 1000. Done in 1 hours. ETA: 19 hours
+
+9566 of 1000. Done in 1 hours. ETA: 19 hours
+
+9567 of 1000. Done in 1 hours. ETA: 19 hours
+
+9568 of 1000. Done in 1 hours. ETA: 20 hours
+
+9569 of 1000. Done in 1 hours. ETA: 20 hours
+
+9570 of 1000. Done in 1 hours. ETA: 20 hours
+
+9571 of 1000. Done in 1 hours. ETA: 21 hours
+
+9572 of 1000. Done in 2 hours. ETA: 21 hours
+
+9573 of 1000. Done in 2 hours. ETA: 22 hours
+
+9574 of 1000. Done in 2 hours. ETA: 22 hours
+
+9575 of 1000. Done in 2 hours. ETA: 23 hours
+
+9576 of 1000. Done in 2 hours. ETA: 24 hours
+
+9577 of 1000. Done in 2 hours. ETA: 25 hours
+
+9578 of 1000. Done in 2 hours. ETA: 26 hours
+
+9579 of 1000. Done in 2 hours. ETA: 26 hours
+
+9580 of 1000. Done in 3 hours. ETA: 27 hours
+
+9581 of 1000. Done in 3 hours. ETA: 27 hours
+
+9582 of 1000. Done in 3 hours. ETA: 28 hours
+
+9583 of 1000. Done in 3 hours. ETA: 29 hours
+
+9584 of 1000. Done in 3 hours. ETA: 29 hours
+
+9585 of 1000. Done in 3 hours. ETA: 30 hours
+
+9586 of 1000. Done in 3 hours. ETA: 31 hours
+
+9587 of 1000. Done in 4 hours. ETA: 32 hours
+
+9588 of 1000. Done in 4 hours. ETA: 33 hours
+
+9589 of 1000. Done in 5 hours. ETA: 35 hours
+
+9590 of 1000. Done in 6 hours. ETA: 37 hours
+
+9591 of 1000. Done in 6 hours. ETA: 39 hours
+
+9592 of 1000. Done in 6 hours. ETA: 41 hours
+
+9593 of 1000. Done in 6 hours. ETA: 43 hours
+
+9594 of 1000. Done in 6 hours. ETA: 45 hours
+
+9595 of 1000. Done in 6 hours. ETA: 47 hours
+
+9596 of 1000. Done in 6 hours. ETA: 49 hours
+
+9597 of 1000. Done in 6 hours. ETA: 49 hours
+
+9598 of 1000. Done in 6 hours. ETA: 51 hours
+
+9599 of 1000. Done in 6 hours. ETA: 53 hours
+
+9600 of 1000. Done in 6 hours. ETA: 55 hours
+
+9601 of 1000. Done in 9 hours. ETA: 57 hours
+
+9602 of 1000. Done in 11 hours. ETA: 60 hours
+
+9603 of 1000. Done in 13 hours. ETA: 64 hours
+
+9604 of 1000. Done in 15 hours. ETA: 69 hours
+
+9605 of 1000. Done in 17 hours. ETA: 74 hours
+
+9606 of 1000. Done in 17 hours. ETA: 80 hours
+
+9607 of 1000. Done in 17 hours. ETA: 85 hours
+
+9608 of 1000. Done in 17 hours. ETA: 90 hours
+
+9609 of 1000. Done in 17 hours. ETA: 95 hours
+
+9610 of 1000. Done in 17 hours. ETA: 100 hours
+
+9611 of 1000. Done in 17 hours. ETA: 104 hours
+
+9612 of 1000. Done in 17 hours. ETA: 109 hours
+
+9613 of 1000. Done in 17 hours. ETA: 109 hours
+
+9614 of 1000. Done in 17 hours. ETA: 114 hours
+
+9615 of 1000. Done in 17 hours. ETA: 118 hours
+
+9616 of 1000. Done in 20 hours. ETA: 123 hours
+
+9617 of 1000. Done in 23 hours. ETA: 129 hours
+
+9618 of 1000. Done in 26 hours. ETA: 135 hours
+
+9619 of 1000. Done in 29 hours. ETA: 142 hours
+

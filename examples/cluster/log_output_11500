@@ -1,0 +1,68 @@
+cpu_bind=MASK - bigterra152, task  0  0 [213496]: mask 0x300000000000000000000000000000000000000000000000000000000000000000000000000 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 1.94s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 12500 to 13499
+12500 of 1000. Done in 4 hours. ETA: 0 hours
+
+12501 of 1000. Done in 5 hours. ETA: 4922 hours
+
+12502 of 1000. Done in 5 hours. ETA: 3746 hours
+
+12503 of 1000. Done in 6 hours. ETA: 3108 hours
+
+12504 of 1000. Done in 6 hours. ETA: 2720 hours
+
+12505 of 1000. Done in 8 hours. ETA: 2451 hours
+
+12506 of 1000. Done in 8 hours. ETA: 2271 hours
+
+12507 of 1000. Done in 8 hours. ETA: 2117 hours
+
+12508 of 1000. Done in 9 hours. ETA: 1985 hours
+
+12509 of 1000. Done in 9 hours. ETA: 1874 hours
+
+12510 of 1000. Done in 9 hours. ETA: 1778 hours
+
+12511 of 1000. Done in 10 hours. ETA: 1695 hours
+
+12512 of 1000. Done in 13 hours. ETA: 1627 hours
+
+12513 of 1000. Done in 18 hours. ETA: 1579 hours
+
+12514 of 1000. Done in 23 hours. ETA: 1558 hours
+
+12515 of 1000. Done in 28 hours. ETA: 1555 hours
+
+12516 of 1000. Done in 28 hours. ETA: 1345 hours
+
+12517 of 1000. Done in 28 hours. ETA: 1338 hours
+
+12518 of 1000. Done in 29 hours. ETA: 1273 hours
+
+12519 of 1000. Done in 30 hours. ETA: 1253 hours
+
+12520 of 1000. Done in 30 hours. ETA: 1247 hours
+
+12521 of 1000. Done in 30 hours. ETA: 1251 hours
+
+12522 of 1000. Done in 31 hours. ETA: 1251 hours
+

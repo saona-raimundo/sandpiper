@@ -1,0 +1,370 @@
+cpu_bind=MASK - bigterra140, task  0  0 [9266]: mask 0x80 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 3.36s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+Started!
+Computing from 5500 to 6499
+job number 5500, of run of 1000. Done in 0 hours. ETA: 0 hours
+
+job number 5501, of run of 1000. Done in 0 hours. ETA: 10 hours
+
+job number 5502, of run of 1000. Done in 0 hours. ETA: 8 hours
+
+job number 5503, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5504, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5505, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5506, of run of 1000. Done in 0 hours. ETA: 7 hours
+
+job number 5507, of run of 1000. Done in 0 hours. ETA: 7 hours
+
+job number 5508, of run of 1000. Done in 0 hours. ETA: 7 hours
+
+job number 5509, of run of 1000. Done in 0 hours. ETA: 7 hours
+
+job number 5510, of run of 1000. Done in 0 hours. ETA: 7 hours
+
+job number 5511, of run of 1000. Done in 0 hours. ETA: 7 hours
+
+job number 5512, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5513, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5514, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5515, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5516, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5517, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5518, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5519, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5520, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5521, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5522, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5523, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5524, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5525, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5526, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5527, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5528, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5529, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5530, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5531, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5532, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5533, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5534, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5535, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5536, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5537, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5538, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5539, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5540, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5541, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5542, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5543, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5544, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5545, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5546, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5547, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5548, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5549, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5550, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5551, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5552, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5553, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5554, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5555, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5556, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5557, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5558, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5559, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5560, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5561, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5562, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5563, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5564, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5565, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5566, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5567, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5568, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5569, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5570, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5571, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5572, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5573, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5574, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5575, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5576, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5577, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5578, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5579, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5580, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5581, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5582, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5583, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5584, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5585, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5586, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5587, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5588, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5589, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5590, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5591, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5592, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5593, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5594, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5595, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5596, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5597, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5598, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5599, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5600, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5601, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5602, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5603, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5604, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5605, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5606, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5607, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5608, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5609, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5610, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5611, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5612, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5613, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5614, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5615, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5616, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5617, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5618, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5619, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5620, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5621, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5622, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5623, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5624, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5625, of run of 1000. Done in 0 hours. ETA: 6 hours
+
+job number 5626, of run of 1000. Done in 1 hours. ETA: 6 hours
+
+job number 5627, of run of 1000. Done in 1 hours. ETA: 6 hours
+
+job number 5628, of run of 1000. Done in 1 hours. ETA: 6 hours
+
+job number 5629, of run of 1000. Done in 1 hours. ETA: 6 hours
+
+job number 5630, of run of 1000. Done in 1 hours. ETA: 7 hours
+
+job number 5631, of run of 1000. Done in 1 hours. ETA: 7 hours
+
+job number 5632, of run of 1000. Done in 1 hours. ETA: 7 hours
+
+job number 5633, of run of 1000. Done in 1 hours. ETA: 8 hours
+
+job number 5634, of run of 1000. Done in 1 hours. ETA: 8 hours
+
+job number 5635, of run of 1000. Done in 1 hours. ETA: 9 hours
+
+job number 5636, of run of 1000. Done in 1 hours. ETA: 9 hours
+
+job number 5637, of run of 1000. Done in 1 hours. ETA: 9 hours
+
+job number 5638, of run of 1000. Done in 1 hours. ETA: 10 hours
+
+job number 5639, of run of 1000. Done in 1 hours. ETA: 10 hours
+
+job number 5640, of run of 1000. Done in 1 hours. ETA: 10 hours
+
+job number 5641, of run of 1000. Done in 2 hours. ETA: 11 hours
+
+job number 5642, of run of 1000. Done in 2 hours. ETA: 11 hours
+
+job number 5643, of run of 1000. Done in 3 hours. ETA: 12 hours
+
+job number 5644, of run of 1000. Done in 4 hours. ETA: 13 hours
+
+job number 5645, of run of 1000. Done in 6 hours. ETA: 13 hours
+
+job number 5646, of run of 1000. Done in 6 hours. ETA: 15 hours
+
+job number 5647, of run of 1000. Done in 6 hours. ETA: 16 hours
+
+job number 5648, of run of 1000. Done in 6 hours. ETA: 18 hours
+
+job number 5649, of run of 1000. Done in 6 hours. ETA: 20 hours
+
+job number 5650, of run of 1000. Done in 6 hours. ETA: 21 hours
+
+job number 5651, of run of 1000. Done in 6 hours. ETA: 23 hours
+
+job number 5652, of run of 1000. Done in 6 hours. ETA: 24 hours
+
+job number 5653, of run of 1000. Done in 6 hours. ETA: 26 hours
+
+job number 5654, of run of 1000. Done in 6 hours. ETA: 27 hours
+
+job number 5655, of run of 1000. Done in 6 hours. ETA: 29 hours
+
+job number 5656, of run of 1000. Done in 7 hours. ETA: 30 hours
+
+job number 5657, of run of 1000. Done in 9 hours. ETA: 32 hours
+
+job number 5658, of run of 1000. Done in 11 hours. ETA: 34 hours
+
+job number 5659, of run of 1000. Done in 14 hours. ETA: 38 hours
+
+job number 5660, of run of 1000. Done in 19 hours. ETA: 41 hours
+
+job number 5661, of run of 1000. Done in 19 hours. ETA: 42 hours
+
+job number 5662, of run of 1000. Done in 19 hours. ETA: 47 hours
+
+job number 5663, of run of 1000. Done in 19 hours. ETA: 51 hours
+
+job number 5664, of run of 1000. Done in 19 hours. ETA: 55 hours
+
+job number 5665, of run of 1000. Done in 19 hours. ETA: 59 hours
+
+job number 5666, of run of 1000. Done in 19 hours. ETA: 63 hours
+
+job number 5667, of run of 1000. Done in 19 hours. ETA: 67 hours
+
+job number 5668, of run of 1000. Done in 19 hours. ETA: 71 hours
+
+job number 5669, of run of 1000. Done in 19 hours. ETA: 75 hours
+
+job number 5670, of run of 1000. Done in 19 hours. ETA: 79 hours
+
+job number 5671, of run of 1000. Done in 21 hours. ETA: 83 hours
+
+job number 5672, of run of 1000. Done in 24 hours. ETA: 88 hours
+
+job number 5673, of run of 1000. Done in 27 hours. ETA: 93 hours
+

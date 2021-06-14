@@ -4,11 +4,12 @@
 #script for running a single-CPU serial job via SLURM
 #-------------------------------------------------------------
 #
-#SBATCH --job-name=sandpiper
-#SBATCH --output=log_output_10500_2
+#SBATCH --job-name=4sandpiper
+#SBATCH --output=log_output
 #
 #Define the number of hours the job should run. 
 #Maximum runtime is limited to 10 days, ie. 240 hours
+#SBATCH --time=48:00:00
 #
 #Define the amount of RAM used by your job in GigaBytes
 #SBATCH --mem=256G
@@ -31,4 +32,4 @@ module load rust
 #
 #
 #run the respective binary through SLURM's srun
-srun --cpu_bind=verbose  cargo run --release --example cluster
+srun --cpu_bind=verbose  cargo run --release --example cluster2

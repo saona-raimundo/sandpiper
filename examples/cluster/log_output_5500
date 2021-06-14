@@ -1,0 +1,40 @@
+cpu_bind=MASK - bigterra152, task  0  0 [240124]: mask 0x300000000000000000000000000000000000000000000000000000000000000000000000000000000000 set
+cpu_bind=MASK - bigterra152, task  0  0 [240201]: mask 0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000 set
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+   Compiling sandpiper v0.1.1 (/nfs/scistore08/kondrgrp/rsaonaur/sandpiper)
+warning: function is never used: `gather_records`
+warning: function is never used: `gather_records`
+   --> examples/cluster/main.rs:175:4
+   --> examples/cluster/main.rs:175:4
+    |
+    |
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+175 | fn gather_records(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
+    |    ^^^^^^^^^^^^^^
+    |    ^^^^^^^^^^^^^^
+    |
+    |
+    = note: `#[warn(dead_code)]` on by default
+    = note: `#[warn(dead_code)]` on by default
+
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: function is never used: `collect_record`
+   --> examples/cluster/main.rs:203:4
+    |
+203 | fn collect_record(
+    |    ^^^^^^^^^^^^^^
+
+warning: 2 warnings emitted
+
+warning: 2 warnings emitted
+
+    Finished release [optimized] target(s) in 2.09s
+    Finished release [optimized] target(s) in 2.16s
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`
+     Running `/nfs/scistore08/kondrgrp/rsaonaur/sandpiper/target/release/examples/cluster`

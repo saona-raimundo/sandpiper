@@ -88,7 +88,7 @@ mod constants {
 fn main() -> anyhow::Result<()> {
     println!("Started!");
     let redneck_bool = true;
-    let sandpiper_bool = true;
+    let sandpiper_bool = false;
 
     simulate(redneck_bool, sandpiper_bool)?;
     gather_records(redneck_bool, sandpiper_bool)?;
@@ -109,7 +109,7 @@ fn simulate(redneck_bool: bool, sandpiper_bool: bool) -> anyhow::Result<()> {
                     if start <= counter && counter <= end {
                         if redneck_bool {
                             let result: Variance = approximate_conditional_expectation(
-                                sandpiper::N_REDNECK,
+                                50_000, // sandpiper::N_REDNECK,
                                 sandpiper::U,
                                 *location,
                                 *scale,

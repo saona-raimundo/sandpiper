@@ -7,7 +7,7 @@ use std::fs::File;
 use std::fs::OpenOptions;
 
 const START: usize = 1;
-const END: usize = usize::MAX;
+const END: usize = 2;
 
 mod constants {
     // Model parameters
@@ -90,7 +90,7 @@ fn main() -> anyhow::Result<()> {
     let redneck_bool = true;
     let sandpiper_bool = false;
 
-    simulate(redneck_bool, sandpiper_bool)?;
+    // simulate(redneck_bool, sandpiper_bool)?;
     gather_records(redneck_bool, sandpiper_bool)?;
     Ok(())
 }
@@ -211,7 +211,7 @@ fn collect_record(
         .has_headers(false)
         .from_path(source_path)?;
 
-    if let Some(result) = rdr.records().next() {
+    if let Some(result) = rdr.records().skip(1).next() {
         let record = result?;
         writer.write_record(&record)?;
     }

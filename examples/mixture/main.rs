@@ -3,6 +3,7 @@ use preexplorer::prelude::*;
 use read_input::prelude::*;
 use sandpiper::prelude::*;
 use splines::Spline;
+use statrs::distribution::Continuous;
 
 const BETA: f64 = 0.;
 const MU_MIN: f64 = -0.1;
@@ -11,7 +12,8 @@ const POPULATION_SIZE: u64 = 500_000;
 const UPPER_GEN_FREQ: sandpiper::UpperBound = sandpiper::UpperBound::Smallest;
 const VARIANCE_SAMPLES: usize = 1_000;
 const ERROR_LIMIT: f64 = 1e-3;
-const ITERATIONS: usize = 1000;
+const SIGMA_MAX: f64 = 0.1;
+const SIGMA_POINTS: i32 = 10;
 
 fn main() -> anyhow::Result<()> {
     // Initialization
@@ -42,7 +44,10 @@ alpha = 0 (ie no skewness, just a normal gaussian distribution)."
         .add_err_test(|&x| x > -1., "Please input a value greater than -1.")
         .get();
     let mu_points = input()
-        .msg(format!("Please input minimum mu (default {}): ", MU_POINTS))
+        .msg(format!(
+            "Please input number of points in the grid (default {}): ",
+            MU_POINTS
+        ))
         .default(MU_POINTS)
         .add_err_test(|&x| x > 0, "Please input a positive value.")
         .get();
@@ -93,45 +98,83 @@ alpha = 0 (ie no skewness, just a normal gaussian distribution)."
         }
     }
 
-    let dx = mu_min.abs() / (2.0_f64.powi(mu_points)); // mu_min.abs() / mu_points.pow(2) as f64;
-    let grid = ndarray::Array::range(mu_min, mu_min.abs(), dx);
-    let mut temporal_values: Vec<Vec<f64>> = vec![grid
-        .iter()
-        .map(|mu| {
-            initial_conditions
-                .sample(*mu)
-                .ok_or(anyhow::anyhow!(format!("Could not sample {}!", mu)))
-                .unwrap()
-        })
-        .collect()];
-    // Iteration
-    let iterations = input()
+    let sigma_max = input()
         .msg(format!(
-            "Please input number of iterations (default {}): ",
-            ITERATIONS
+            "Please input maximum sigma (default {}): ",
+            SIGMA_MAX
         ))
-        .default(ITERATIONS)
+        .default(SIGMA_MAX)
+        .add_err_test(|&x| x > 0., "Please input a negative value.")
         .get();
-    for temporal_index in 0..iterations {
-        let mut last = vec![0.; grid.len()];
-        last[0] =
-            (3. * temporal_values[temporal_index][0] + temporal_values[temporal_index][1]) / 4.;
-        for spatial_index in 1..(grid.len() - 1) {
-            last[spatial_index] = (temporal_values[temporal_index][spatial_index - 1]
-                + 2. * temporal_values[temporal_index][spatial_index]
-                + temporal_values[temporal_index][spatial_index + 1])
-                / 4.;
+    let sigma_points = input()
+        .msg(format!(
+            "Please input number of points (default {}): ",
+            SIGMA_POINTS
+        ))
+        .default(SIGMA_POINTS)
+        .add_err_test(|&x| x > 0, "Please input a positive value.")
+        .get();
+    // Iteration
+    let mut temporal_values = vec![initial_conditions.clone()];
+    let grid_geometric = ndarray::Array::geomspace(
+        sigma_max / (2.0_f64.powi(sigma_points)),
+        sigma_max,
+        sigma_points as usize,
+    )
+    .ok_or(anyhow::anyhow!("geometric grid failed!"))?;
+    {
+        println!("Computing iterations!");
+
+        for temporal_value in grid_geometric.iter() {
+            let mut new_keys = vec![];
+
+            // Convolution for each point
+            for spatial_index in 0..initial_conditions.len() {
+                let spatial_center: f64 = initial_conditions
+                    .get(spatial_index)
+                    .ok_or(anyhow::anyhow!(format!(
+                        "There is no key #{}!",
+                        spatial_index
+                    )))
+                    .unwrap()
+                    .t;
+                // Convolution
+                let gaussian = statrs::distribution::Normal::new(0.0, *temporal_value).unwrap();
+                let integrand = |x: f64| -> f64 {
+                    gaussian.pdf(spatial_center - x) * initial_conditions.clamped_sample(x).unwrap()
+                };
+                let new_value = quadrature::integrate(
+                    integrand,
+                    spatial_center - 4. * temporal_value,
+                    spatial_center + 4. * temporal_value,
+                    1e-10,
+                )
+                .integral;
+                // Retrieving the value
+                new_keys.push(splines::Key::new(
+                    spatial_center,
+                    new_value,
+                    splines::Interpolation::Linear,
+                ));
+            }
+            temporal_values.push(Spline::from_vec(new_keys));
         }
-        last[grid.len() - 1] = (temporal_values[temporal_index][grid.len() - 2]
-            + 3. * temporal_values[temporal_index][grid.len() - 1])
-            / 4.;
-        temporal_values.push(last);
     }
 
     // Plotting result
-    let values = iproduct!(0..grid.len(), 0..iterations)
-        .map(|(spatial_index, temporal_index)| temporal_values[temporal_index][spatial_index]);
-    pre::Heatmap::new(grid.iter(), 0..iterations, values)
+    let (grid, _) = initial_conditions
+        .keys()
+        .iter()
+        .map(|key| (key.t, key.value))
+        .unzip::<_, _, Vec<f64>, Vec<f64>>();
+
+    let values =
+        iproduct!(grid.iter(), 0..SIGMA_POINTS as usize).map(|(spatial_value, temporal_index)| {
+            temporal_values[temporal_index]
+                .clamped_sample(*spatial_value)
+                .unwrap()
+        });
+    pre::Heatmap::new(grid.iter(), grid_geometric.iter(), values)
         .plot("simple")
         .unwrap();
 

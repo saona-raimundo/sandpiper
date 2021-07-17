@@ -32,3 +32,16 @@ Therefore, one can make a bottom-up construction.
 ### Example
 
 Consider $\beta = 0, \alpha = 0$. Then, an approximation is to apply the heat equation in the plane with boundary conditions $(\mathbb{E}[2 x (1 - x) \mid s])_{s \in \mathbb{R}}$ on the line.
+
+## Interpretation
+
+- $\beta$ and the cutting of max frequency
+  - Determines initial conditions
+    - $\beta$ interpolates as in the poster
+    - Cutting of max frequency elevates positive selection
+- $\alpha = 0$
+  - Makes heat equation
+- $\sigma$
+  - Time
+- $\mu$
+  - Space  
